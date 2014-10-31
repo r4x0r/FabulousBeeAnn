@@ -1,0 +1,5 @@
+I haven't think of a better way but currently we will have to manually change the IP address on these files:
+	register.html
+	... more coming up
+
+
