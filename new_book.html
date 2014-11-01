@@ -23,40 +23,40 @@
         <h3> Enter the details of the new book below </h3>
 
           <!-- form -->
-          <form>
+          <form method="get" action="http://192.168.1.110:9999/FabulousBeeAnn/new_book_success">
             <div class="row">
               <div class="large-6 large-centered columns">
                 <label>Title</label>
-                <input type="text" placeholder="" />
+                <input type="text" name="title" placeholder="" />
 
                 <label>ISBN</label>
-                <input type="number" placeholder="" />
+                <input type="number" name="ISBN" placeholder="" />
 
                 <label>Author</label>
-                <input type="text" placeholder="" />
+                <input type="text" name="author" placeholder="" />
 
                 <label>Publisher</label>
-                <input type="text" placeholder="" />
+                <input type="text" name="pub" placeholder="" />
 
                 <label>Year of Publisher</label>
-                <input type="month" placeholder="" />
+                <input type="month" name="yr_of_pub" placeholder="" />
 
-                <label>Number of copies</label>
-                <input type="number" placeholder="" />
+                <label>Number of Copies</label>
+                <input type="number" name="copies" placeholder="" />
 
                 <label>Price</label>
-                <input type="number" placeholder="" />
+                <input type="number" name="price" placeholder="" />
 
                 <label>Format</label>
-                <input type="text" placeholder="hardcover or softcover" />
+                <input type="text" name="format" placeholder="hardcover or softcover" />
 
-                <label>Keywords</label>
-                <input type="text" placeholder="" />
+                <label>Keywords (separated by ", ")</label>
+                <input type="text" name="keywords" placeholder="" />
 
                 <label>Subject</label>
-                <input type="text" placeholder="" />
+                <input type="text" name="subject" placeholder="" />
 
-                <a href="#" class="large radius button">Add New Book!</a><br/>
+                <input type="submit" class="large radius button">Add New Book!<br/>
               </div>
             </div>
           </form>
