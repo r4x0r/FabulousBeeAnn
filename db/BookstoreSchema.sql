@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS Bookstore ;
+
+USE Bookstore;
+
 CREATE TABLE Books (
 	ISBN CHAR(15) PRIMARY KEY,
 	title CHAR(40),
