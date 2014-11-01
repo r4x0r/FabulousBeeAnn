@@ -1,0 +1,5 @@
+DROP TABLE Likes;
+DROP TABLE Feedbacks;
+DROP TABLE Orders;
+DROP TABLE Customers;
+DROP TABLE Books;
