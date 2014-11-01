@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS Bookstore ;
+CREATE DATABASE IF NOT EXISTS Bookstore;
 
 USE Bookstore;
 
@@ -28,7 +28,7 @@ CREATE TABLE Orders (
 	user_id CHAR(20),
 	book_id CHAR(15),
 	order_id BIGINT,
-	copies INTEGER.
+	copies INTEGER,
 	date DATE,
 	status CHAR(10) CHECK(status="Confirmed" or status="Shipping" or status = "Pending" or status="Delivered"),
 	PRIMARY KEY (user_id, book_id, order_id),
@@ -36,7 +36,7 @@ CREATE TABLE Orders (
 	FOREIGN KEY (book_id) REFERENCES Books(ISBN)
 );
 
-CREATE TABLE Feedback (
+CREATE TABLE Feedbacks (
 	book_id CHAR(15),
 	user_id CHAR(20),
 	score INTEGER,
@@ -53,9 +53,9 @@ CREATE TABLE Feedback (
 CREATE TABLE Likes (
 	book_id CHAR(15),
 	commenter_id CHAR(20),
-	liker_id CHAR(15),
+	liker_id CHAR(20),
 	rating INTEGER,
-	PRIMARY KEY (book_id, commenter_id, liker_id)
-	FOREIGN KEY (book_id, commenter_id) REFERENCES Feedback,
+	PRIMARY KEY (book_id, commenter_id, liker_id),
+	FOREIGN KEY (book_id, commenter_id) REFERENCES Feedbacks,
 	FOREIGN KEY (liker_id) REFERENCES Customers(login)
 );
