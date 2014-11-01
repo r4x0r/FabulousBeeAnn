@@ -32,7 +32,7 @@ CREATE TABLE Orders (
 	copies INTEGER,
 	date DATE,
 	status CHAR(10), -- CHECK(status="Confirmed" or status="Shipping" or status = "Pending" or status="Delivered"),
-	PRIMARY KEY (user_id, book_id, order_id),
+	PRIMARY KEY (order_id),
 	FOREIGN KEY (user_id) REFERENCES Customers(login),
 	FOREIGN KEY (book_id) REFERENCES Books(ISBN)
 );
