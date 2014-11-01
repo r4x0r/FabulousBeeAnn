@@ -1,4 +1,4 @@
-CREATE TABLE Book (
+CREATE TABLE Books (
 	ISBN CHAR(15) PRIMARY KEY,
 	title CHAR(40),
 	authors	CHAR(40),
@@ -9,7 +9,7 @@ CREATE TABLE Book (
 	format CHAR(9) CHECK(format="hardcover" or format="softcover"),
 	keywords CHAR(40),
 	subject CHAR(40)
-)
+);
 
 CREATE TABLE Customers (
 	login CHAR(20) PRIMARY KEY,
@@ -18,7 +18,7 @@ CREATE TABLE Customers (
 	credit_card_no CHAR(20),
 	address CHAR(50),
 	phone BIGINT
-)
+);
 
 CREATE TABLE Orders (
 	user_id CHAR(20),
@@ -29,8 +29,8 @@ CREATE TABLE Orders (
 	status CHAR(10) CHECK(status="Confirmed" or status="Shipping" or status = "Pending" or status="Delivered"),
 	PRIMARY KEY (user_id, book_id, order_id),
 	FOREIGN KEY (user_id) REFERENCES Customers(login),
-	FOREIGN KEY (book_id) REFERENCES Book(ISBN)
-)
+	FOREIGN KEY (book_id) REFERENCES Books(ISBN)
+);
 
 CREATE TABLE Feedback (
 	book_id CHAR(15),
@@ -44,7 +44,7 @@ CREATE TABLE Feedback (
 	PRIMARY KEY (book_id, user_id),
 	FOREIGN KEY (book_id) REFERENCES Books(ISBN),
 	FOREIGN KEY (user_id) REFERENCES Customers(login)
-)
+);
 
 CREATE TABLE Likes (
 	book_id CHAR(15),
@@ -54,4 +54,4 @@ CREATE TABLE Likes (
 	PRIMARY KEY (book_id, commenter_id, liker_id)
 	FOREIGN KEY (book_id, commenter_id) REFERENCES Feedback,
 	FOREIGN KEY (liker_id) REFERENCES Customers(login)
-)
+);
