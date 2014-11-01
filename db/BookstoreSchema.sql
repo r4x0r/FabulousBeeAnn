@@ -8,7 +8,7 @@ CREATE TABLE Books (
 	title CHAR(140),
 	authors	CHAR(140),
 	publisher CHAR(140),
-	year_of_pub DATE,
+	year_of_pub INTEGER,
 	copies_avail INTEGER,
 	price REAL,
 	format CHAR(9), -- CHECK(format="hardcover" or format="softcover"),
@@ -40,7 +40,7 @@ CREATE TABLE Orders (
 CREATE TABLE Feedbacks (
 	book_id CHAR(15),
 	user_id CHAR(20),
-	score INTEGER,
+	score INTEGER, -- CHECK(score>-1 and score<11),
 	comment CHAR(140),
 	date DATE,
 	useless INTEGER, -- DEFAULT 0,
