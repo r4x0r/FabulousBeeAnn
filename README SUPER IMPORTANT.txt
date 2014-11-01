@@ -45,7 +45,7 @@ you would be able to understand the following:
     our website
 
 - "WEB-INF" folder contains the following:
- - web.xml, which maps html files to java functions
+ - web.xml, which maps url to java functions
  - "classes" folder, holds the compiled java codes (in .class format)
    to perform all our java functions
 
