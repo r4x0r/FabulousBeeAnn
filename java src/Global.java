@@ -1,10 +1,11 @@
 
 
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class Global {
-	private static String IPadd = "192.168.1.110";
-	private static String MySQLconn = "jdbc:mysql://" + IPadd + "/Bookshop";
+	private static String IPadd = "localhost";
+	private static String MySQLconn = "jdbc:mysql://" + IPadd + ":3306/Bookstore";
 	private static String SQLuser = "manager";
 	private static String SQLpwd = "root";
 	
@@ -27,6 +28,7 @@ public class Global {
 	/**
 	 * a: alphanumeric
 	 * n: numeric
+	 * f: float
 	 * p: punctuation
 	 * w: whitespace
 	 * 
@@ -42,7 +44,10 @@ public class Global {
 			result = Pattern.matches("[a-zA-Z]+", input);
 			break;
 		case "n":
-			result = Pattern.matches("[0-9]+", input); //at least 8 numbers
+			result = Pattern.matches("[0-9]+", input); 
+			break;
+		case "f":
+			result = Pattern.matches("[0-9]+\\.[0-9]+", input); 
 			break;
 		case "a+n":
 			result = Pattern.matches("[a-zA-Z0-9]+", input);
@@ -51,10 +56,18 @@ public class Global {
 			result = Pattern.matches("[a-zA-Z0-9 ]+", input);
 			break;
 		case "a+p+w":
-			result = Pattern.matches("[a-zA-Z ']+", input);
+			result = Pattern.matches("[a-zA-Z '\\!\\,\\:\\-\\&]+", input);
 			break;
 		case "a+n+p+w":
 			result = Pattern.matches("[a-zA-Z0-9 #\\-]+", input);
+			break;
+		case "date":	
+			result = Pattern.matches("[0-9]{4}+\\-[0-9][0-9]", input);
+			break;
+		case "format":	
+			if (input.equalsIgnoreCase("hardcover") || input.equalsIgnoreCase("softcover")) {
+				result = true;
+			}
 			break;
 		}
 		return result;

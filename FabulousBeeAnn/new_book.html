@@ -23,7 +23,7 @@
         <h3> Enter the details of the new book below </h3>
 
           <!-- form -->
-          <form method="get" action="http://192.168.1.110:9999/FabulousBeeAnn/new_book_success">
+          <form method="get" action="http://localhost:9999/FabulousBeeAnn/new_book_success">
             <div class="row">
               <div class="large-6 large-centered columns">
                 <label>Title</label>
@@ -38,8 +38,8 @@
                 <label>Publisher</label>
                 <input type="text" name="pub" placeholder="" />
 
-                <label>Year of Publisher</label>
-                <input type="month" name="yr_of_pub" placeholder="" />
+                <label>Year of Publication</label>
+                <input type="number" name="yr_of_pub" placeholder="" />
 
                 <label>Number of Copies</label>
                 <input type="number" name="copies" placeholder="" />
@@ -50,13 +50,13 @@
                 <label>Format</label>
                 <input type="text" name="format" placeholder="hardcover or softcover" />
 
-                <label>Keywords (separated by ", ")</label>
+                <label>Keywords</label>
                 <input type="text" name="keywords" placeholder="" />
 
                 <label>Subject</label>
                 <input type="text" name="subject" placeholder="" />
 
-                <input type="submit" class="large radius button">Add New Book!<br/>
+                <input type="submit" value="Add New Book" class="large radius button"><br/>
               </div>
             </div>
           </form>
