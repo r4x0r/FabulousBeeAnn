@@ -31,12 +31,7 @@
 					   FROM Likes
 					   WHERE liker_id = 'mail') l
 	WHERE f.book_id = l.book_id
-	AND f.user_id = l.commenter_id
-	AND EXISTS (SELECT book_id, commenter_id
-				FROM Likes
-				WHERE liker_id = 'mail'
-				AND book_id = f.book_id
-				AND commenter_id = f.user_id);
+	AND f.user_id = l.commenter_id;
 
 -- 4. TBC
 
