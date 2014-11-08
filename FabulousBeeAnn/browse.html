@@ -1,1 +1,71 @@
-browse.html
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Searching for your books</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+
+  <body>
+    <!-- title -->
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Welcome to Fabulous BB & NN</h1>
+      </div>
+    </div>
+
+    <!-- grey panel -->
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel">
+        <h3> Browse for books by filling up the following fields </h3>
+
+          <!-- form -->
+          <form method="get" action="http://localhost:9999/FabulousBeeAnn/new_book_success">
+            <div class="row">
+              <div class="large-6 large-centered columns">
+                <label>Title</label>
+                <input type="text" name="title" maxlength="140" placeholder="" />
+
+                <label>ISBN</label>
+                <input type="number" name="ISBN" maxlength="15" placeholder="" />
+
+                <label>Author</label>
+                <input type="text" name="author" maxlength="140" placeholder="" />
+
+
+                <label>Keywords</label>
+                <input type="text" name="keywords" maxlength="140" placeholder="" />
+
+                <label>Subject</label>
+                <input type="text" name="subject" maxlength="140" placeholder="" />
+
+                <label>Sort By</label>
+                <input type="radio" name="sortby" value="year" id="sortbyyear"><label for="sortbyyear">Year</label>
+                <input type="radio" name="sortby" value="avgfeedback" id="sortbyavgfeedback"><label for="sortbyavgfeedback">Average Feedback</label>
+
+                <hr />
+
+                <input type="submit" value="Browse Book" class="large radius button"><br/>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
