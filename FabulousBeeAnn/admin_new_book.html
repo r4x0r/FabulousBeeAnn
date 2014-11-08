@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Searching for your books</title>
+    <title>Foundation | Welcome</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
@@ -20,10 +20,10 @@
     <div class="row">
       <div class="large-12 columns">
         <div class="panel">
-        <h3> Browse for books by filling up the following fields </h3>
+        <h3> Enter the details of the new book below </h3>
 
           <!-- form -->
-          <form method="get" action="http://localhost:9999/FabulousBeeAnn/new_book_success">
+          <form method="get" action="http://localhost:9999/FabulousBeeAnn/admin_new_book_success">
             <div class="row">
               <div class="large-6 large-centered columns">
                 <label>Title</label>
@@ -35,6 +35,20 @@
                 <label>Author</label>
                 <input type="text" name="author" maxlength="140" placeholder="" />
 
+                <label>Publisher</label>
+                <input type="text" name="pub" maxlength="140" placeholder="" />
+
+                <label>Year of Publication</label>
+                <input type="number" name="yr_of_pub" maxlength="4" placeholder="" />
+
+                <label>Number of Copies</label>
+                <input type="number" name="copies" maxlength="5" placeholder="" />
+
+                <label>Price</label>
+                <input type="number" name="price" maxlength="8" placeholder="" />
+
+                <label>Format</label>
+                <input type="text" name="format" maxlength="9" placeholder="hardcover or softcover" />
 
                 <label>Keywords</label>
                 <input type="text" name="keywords" maxlength="140" placeholder="" />
@@ -42,13 +56,7 @@
                 <label>Subject</label>
                 <input type="text" name="subject" maxlength="140" placeholder="" />
 
-                <label>Sort By</label>
-                <input type="radio" name="sortby" value="year" id="sortbyyear"><label for="sortbyyear">Year</label>
-                <input type="radio" name="sortby" value="avgfeedback" id="sortbyavgfeedback"><label for="sortbyavgfeedback">Average Feedback</label>
-
-                <hr />
-
-                <input type="submit" value="Browse Book" class="large radius button"><br/>
+                <input type="submit" value="Add New Book" class="large radius button"><br/>
               </div>
             </div>
           </form>

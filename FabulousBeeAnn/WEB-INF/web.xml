@@ -7,12 +7,12 @@
    <!-- To save as "hello\WEB-INF\web.xml" -->
 
    <servlet>
-      <servlet-name>RegisterUser</servlet-name>
+      <servlet-name>UserRegister</servlet-name>
       <servlet-class>Register</servlet-class>
    </servlet>
 
    <servlet>
-      <servlet-name>AddBook</servlet-name>
+      <servlet-name>AdminNewBook</servlet-name>
       <servlet-class>Admin_New_Book</servlet-class>
    </servlet>
  
@@ -20,12 +20,12 @@
          placed IN FRONT of the <servlet-mapping> elements -->
 
    <servlet-mapping>
-      <servlet-name>RegisterUser</servlet-name>
-      <url-pattern>/success</url-pattern>
+      <servlet-name>UserRegister</servlet-name>
+      <url-pattern>/user_register_success</url-pattern>
    </servlet-mapping>
 
    <servlet-mapping>
-      <servlet-name>AddBook</servlet-name>
-      <url-pattern>/new_book_success</url-pattern>
+      <servlet-name>AdminNewBook</servlet-name>
+      <url-pattern>/admin_new_book_success</url-pattern>
    </servlet-mapping>
 </web-app>

@@ -78,14 +78,14 @@ public class Register extends HttpServlet {  // JDK 6 and above only
 				// Direct successful registration to success.html
 				out.println("<html><body><script type=\"text/javascript\">");  
 				out.println("alert('Success');"); 
-				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/success.html\";");
+				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_register_success.html\";");
 				out.println("</script></body></html>");
 			}
 			else {
 				// Alerts User of error and redirects unsuccessful registration back to register.html
 				out.println("<html><body><script type=\"text/javascript\">");  
 				out.println("alert('" + error + "');"); 
-				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/register.html\";");
+				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_register.html\";");
 				out.println("</script></body></html>");
 			}
 

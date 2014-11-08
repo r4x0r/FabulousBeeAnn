@@ -93,13 +93,13 @@ public class Admin_New_Book extends HttpServlet {  // JDK 6 and above only
 	        	// Direct successful registration to success.html
 	        	out.println("<html><body><script type=\"text/javascript\">");  
 	        	out.println("alert('Success');"); 
-	        	out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/new_book_success.html\";");
+	        	out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_new_book_success.html\";");
 	        	out.println("</script></body></html>");
 	        }
 	        else {
 	        	out.println("<html><body><script type=\"text/javascript\">");  
 	        	out.println("alert('" + error + "');"); 
-	        	out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/new_book.html\";");
+	        	out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_new_book.html\";");
 	        	out.println("</script></body></html>");
 	        }
 
