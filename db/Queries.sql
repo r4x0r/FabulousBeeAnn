@@ -53,11 +53,54 @@
 
 -- 4. adding new book into bookstore.
 	-- need to ask meihui what it means by "along with the number of new books that have arrived in the warehouse"
-	INSERT INTO Books VALUES (isbn, title, authors, publisher, year_of_pub, copies_available, price, format, keywords, subject);
+	INSERT INTO Books VALUES (isbn, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject);
 
 
+-- 5. increase copies of books in inventory (by x copies for book y)
+	UPDATE Books
+	SET copies_avail = copies_avail + x
+	WHERE ISBN = y;
 
 
+-- 6. recording the feedback of users
+	-- Only one feedback per user for each book (catch SQL error / JAVA to check)
+	-- score must be between 0 - 10 (HTML implementation)
+	-- useless, useful, very_useful have default value of 0
+	SELECT ISBN, title, authors, publisher, year_of_pub, subject
+	FROM Books
+	WHERE ISBN = y;
+	
+	INSERT INTO Feedbacks VALUES (book_id, user_id, score, comment, date, useless, useful very_useful);
+
+
+-- 7. user can rate other ppl's feedback
+	-- user cannot rate their own feedback
+	SELECT book_id, user_id, score, comment, date, (useful + (very_useful*2.0)) AS total_ratings, (useless + useful + very_useful) AS num_ppl_rated
+	FROM Feedbacks;
+
+	-- JAVA to check if user is rating his own comment
+	-- JAVA to select the appropriate update query
+	UPDATE Feedbacks SET useless = useless + 1 WHERE book_id = x AND user_id = y;
+	UPDATE Feedbacks SET useful = useful + 1 WHERE book_id = x AND user_id = y;
+	UPDATE Feedbacks SET very_useful = very_useful + 1 WHERE book_id = x AND user_id = y;
+
+
+-- 8. users search for books by querying on 
+	-- author and/or
+	-- publisher and/or
+	-- title and/or
+	-- subject
+
+	-- use JAVA to query dynamically?
+	SELECT *
+	FROM Books
+	WHERE author = a
+	AND publisher = b
+	AND title = c
+	AND subject = d
+	ORDER BY year_of_pub
+
+	
 
 -- 9. for a specific book, top n most useful feedbacks.
 	-- JAVA to display the top n results
