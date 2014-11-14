@@ -61,7 +61,7 @@ public class Register extends HttpServlet {  // JDK 6 and above only
 
 			}
 
-			
+
 			// Step 3: Execute a SQL SELECT query
 
 			if (insert_now) {
