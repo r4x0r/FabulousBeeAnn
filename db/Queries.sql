@@ -7,6 +7,7 @@
 	-- else insert into table
 
 
+
 -- 2. ordering books
 
 	-- obtain next order number; next entry should take this number
@@ -21,6 +22,7 @@
 	UPDATE Books
 	SET copies = copies - copies_bought
 	WHERE ISBN = book_id;
+
 
 
 -- 3. checking user record. let user be "user3"
@@ -51,9 +53,11 @@
 	AND f.user_id = l.commenter_id;
 
 
+
 -- 4. adding new book into bookstore.
 	-- need to ask meihui what it means by "along with the number of new books that have arrived in the warehouse"
 	INSERT INTO Books VALUES (isbn, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject);
+
 
 
 -- 5. increase copies of books in inventory (by x copies for book y)
@@ -62,15 +66,17 @@
 	WHERE ISBN = y;
 
 
+
 -- 6. recording the feedback of users
 	-- Only one feedback per user for each book (catch SQL error / JAVA to check)
 	-- score must be between 0 - 10 (HTML implementation)
 	-- useless, useful, very_useful have default value of 0
-	SELECT ISBN, title, authors, publisher, year_of_pub, subject
+	SELECT ISBN, title, authors, publisher, year_of_pub, price, format, keywords, subject
 	FROM Books
 	WHERE ISBN = y;
 	
 	INSERT INTO Feedbacks VALUES (book_id, user_id, score, comment, date, useless, useful very_useful);
+
 
 
 -- 7. user can rate other ppl's feedback
@@ -85,22 +91,44 @@
 	UPDATE Feedbacks SET very_useful = very_useful + 1 WHERE book_id = x AND user_id = y;
 
 
+
 -- 8. users search for books by querying on 
 	-- author and/or
 	-- publisher and/or
 	-- title and/or
 	-- subject
-
 	-- use JAVA to query dynamically?
+	
+	-- sort by year published
 	SELECT *
 	FROM Books
-	WHERE author = a
+	WHERE authors = a
 	AND publisher = b
 	AND title = c
 	AND subject = d
-	ORDER BY year_of_pub
+	ORDER BY year_of_pub;
 
-	
+	-- sort by avg score of feedback
+	-- two part query. display first part with avg scores
+	SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, avg_score
+	FROM (SELECT *
+		  FROM Books) searched -- to include search criterias abcd
+	JOIN (SELECT book_id, AVG(score*1.0) AS avg_score
+		  FROM Feedbacks
+		  GROUP BY book_id) fscore
+	ON ISBN = book_id
+	ORDER BY avg_score DESC;
+
+	-- second part to be concantenated to first part on display
+	-- this part got no average score set all to 0
+	SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, 0 AS avg_score
+	FROM (SELECT *
+		  FROM Books) searched -- to include search criterias abcd
+	WHERE NOT EXISTS (SELECT *
+						   FROM Feedbacks
+						   WHERE book_id = ISBN);
+
+
 
 -- 9. for a specific book, top n most useful feedbacks.
 	-- JAVA to display the top n results
@@ -113,15 +141,26 @@
 		  AND (useless + useful + very_useful) > 0) book_comments
 	ORDER BY avg_usefulness DESC;
 
+
+
 -- 10. this is assrape difficult to query.
     -- recommend other books to user after he bought a book
 	-- based on what other users have bought
 	-- order by copies sold to users who have also bought the book he just bought
 
-	-- SELECT * FROM 
-	-- and a hero comes along
-	-- with the strength to carry on 
-	-- la la la la la la la ~ ~ ~
+	-- let book be '978-0486411217' and user be 'job'
+	SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, sales
+	FROM Books JOIN (SELECT book_id, SUM(copies) AS sales
+					 FROM Orders
+					 WHERE book_id <> '978-0486411217'
+					 AND user_id IN (SELECT user_id
+									   FROM Orders
+									   WHERE book_id = '978-0486411217'
+									   AND user_id <> 'job')
+					GROUP BY book_id) recommend
+	ON ISBN = book_id
+	ORDER BY sales DESC;
+
 
 
 -- 11. statistics for each month's sale (popularity in terms of copies sold)
@@ -160,8 +199,18 @@
 	GROUP BY publisher
 	ORDER BY sold_this_mth DESC;
 
+
+
 ----------------------------------------------------------------------------
-	-- test query:
+	-- test queries:
+
 	-- UPDATE Orders
 	-- SET book_id = '978-0590353427'
 	-- WHERE book_id = '978-1631060243';
+
+	-- INSERT INTO Orders VALUES ('super95', '978-0486411217', 6, 1, '2014-11-02', 'Delivered');
+	-- INSERT INTO Orders VALUES ('mail', '978-0486411217', 7, 1, '2014-11-02', 'Delivered');
+	-- INSERT INTO Orders VALUES ('sale', '978-0486411217', 8, 1, '2014-11-03', 'Delivered');
+	-- INSERT INTO Orders VALUES ('job', '978-0590353427', 9, 1, '2014-11-04', 'Delivered');
+
+	-- INSERT INTO Feedbacks VALUES ('978-1597775083', 'contactus', 4, 'okay lah', '2014-11-01', 0, 0, 0);
