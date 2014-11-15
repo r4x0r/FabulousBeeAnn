@@ -12,8 +12,18 @@
    </servlet>
 
    <servlet>
+      <servlet-name>UserLogin</servlet-name>
+      <servlet-class>Login</servlet-class>
+   </servlet>
+
+   <servlet>
       <servlet-name>AdminNewBook</servlet-name>
       <servlet-class>Admin_New_Book</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>AdminUpdateBook</servlet-name>
+      <servlet-class>Admin_Update_Book</servlet-class>
    </servlet>
  
    <!-- Note: All <servlet> elements MUST be grouped together and
@@ -25,7 +35,17 @@
    </servlet-mapping>
 
    <servlet-mapping>
+      <servlet-name>UserLogin</servlet-name>
+      <url-pattern>/user_login_success</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
       <servlet-name>AdminNewBook</servlet-name>
       <url-pattern>/admin_new_book_success</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>AdminUpdateBook</servlet-name>
+      <url-pattern>/admin_update_book_success</url-pattern>
    </servlet-mapping>
 </web-app>

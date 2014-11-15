@@ -23,22 +23,17 @@
         <h3> Update the book count by searching the ISBN of the book and updating it </h3>
 
           <!-- form -->
-          <form>
+          <form method="get" action="http://localhost:9999/FabulousBeeAnn/admin_update_book_success">
             <div class="row">
               <div class="large-6 large-centered columns">
 
                 <label>ISBN</label>
-                <input type="number" placeholder="" />
+                <input type="text" name="ISBN" placeholder="" />
 
-                <label>Old Number of Copies</label>
-                <input type="number" placeholder="" />
+                <label>Positive(Negative) Number to Add(Subtract) Copies of Book</label>
+                <input type="number" name="copies" placeholder="" />
 
-                <label>Number to add or subtract from copies</label>
-                <input type="number" placeholder="" />
-
-
-                <a href="#" class="large radius button">Add copies!!</a><br/>
-                <a href="#" class="large radius button">Subtract copies!!</a><br/>
+                <input type="submit" value="Update Book" class="large radius button"><br/>
               </div>
             </div>
           </form>
