@@ -8,12 +8,17 @@
 
    <servlet>
       <servlet-name>UserRegister</servlet-name>
-      <servlet-class>Register</servlet-class>
+      <servlet-class>User_Register</servlet-class>
    </servlet>
 
    <servlet>
       <servlet-name>UserLogin</servlet-name>
-      <servlet-class>Login</servlet-class>
+      <servlet-class>User_Login</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>UserBrowseBooks</servlet-name>
+      <servlet-class>User_Browse_Books</servlet-class>
    </servlet>
 
    <servlet>
@@ -37,6 +42,12 @@
    <servlet-mapping>
       <servlet-name>UserLogin</servlet-name>
       <url-pattern>/user_login_success</url-pattern>
+   </servlet-mapping>
+
+   
+   <servlet-mapping>
+      <servlet-name>UserBrowseBooks</servlet-name>
+      <url-pattern>/user_browse_results</url-pattern>
    </servlet-mapping>
 
    <servlet-mapping>
