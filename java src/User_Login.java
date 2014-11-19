@@ -5,7 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 
-public class Login extends HttpServlet {  // JDK 6 and above only
+public class User_Login extends HttpServlet {  // JDK 6 and above only
 	String error = "";
 	boolean exists = false;
 

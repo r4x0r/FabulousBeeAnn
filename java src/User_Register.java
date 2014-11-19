@@ -5,7 +5,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 
-public class Register extends HttpServlet {  // JDK 6 and above only
+public class User_Register extends HttpServlet {  // JDK 6 and above only
 	String error = "";
 	boolean insert_now = false;
 
