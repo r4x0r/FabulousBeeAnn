@@ -1,0 +1,106 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Result</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+
+  <body>
+    <!-- title -->
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Welcome to Fabulous BB & NN</h1>
+      </div>
+    </div>
+
+    <!-- grey panel -->
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel">
+
+        <!-- Options -->
+        <h3> Options </h3>
+        <p> Copy the ISBN of the book if you want to order the book or view ratings of the book. </p>
+
+          <!-- form -->
+          <form method="get" action="http://localhost:9999/FabulousBeeAnn/user_browse_results">
+            <div class="row">
+              <div class="large-6 large-centered columns">
+                <label>ISBN</label>
+                <input type="text" name="title" maxlength="140" placeholder="" />
+
+                <input type="submit" value="View Ratings" class="large radius button">
+                <!-- <br/> -->
+                <!-- whitespaces -->
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="submit" value="ORDER!!!" formaction="http://localhost:9999/FabulousBeeAnn/user_order" class="large radius button alert" placeholder = "" />
+
+              </div>
+            </div>
+          </form>
+
+
+          <hr />
+
+          <!-- Book Results -->
+          <h3> Browse Results </h3>
+
+          <table>
+            <caption>Results for #title/etc</caption>
+            <!-- table header -->
+            <thead>
+              <tr>
+                <th width="150">ISBN</th>
+                <th>Title</th>
+                <th width="150">Author</th>
+                <th width="150">Publisher</th>
+                <th width="150">Price</th>
+              </tr>
+            </thead>
+            <!-- table data -->
+            <!-- this part need to print using while loop in java -->
+            <tbody>
+              <tr>
+                <td>Content Goes Here</td>
+                <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+              </tr>
+              <tr>
+                <td>Content Goes Here</td>
+                <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+              </tr>
+              <tr>
+                <td>Content Goes Here</td>
+                <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+                <td>Content Goes Here</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
