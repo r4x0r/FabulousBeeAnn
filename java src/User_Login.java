@@ -17,6 +17,7 @@ public class User_Login extends HttpServlet {  // JDK 6 and above only
 		// Get a output writer to write the response message into the network socket
 		PrintWriter out = response.getWriter();
 
+
 		Connection conn = null;
 		Statement checkDatabase = null;
 		try {
@@ -47,6 +48,31 @@ public class User_Login extends HttpServlet {  // JDK 6 and above only
 				out.println("alert('Success');"); 
 				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_home.html\";");
 				out.println("</script></body></html>");
+
+				// Create the cookie to store login name
+				Cookie login_cookie = new Cookie("login", request.getParameter("login"));
+
+				// Set the time before the cookie expires - 24 hours
+				login_cookie.setMaxAge(60*60*24);
+				login_cookie.setComment("values should not contain white space, brackets, parentheses, equals signs, commas, double quotes, slashes, question marks, at signs, colons, and semicolons")
+
+				// Put this cookie into the response header
+				response.addCookie(login_cookie);
+
+				/* The way to find a cookie is as follows:
+				 * String loginName = "";
+				 * Cookie cookie = null;
+				 * Cookie [] cookies = null; 
+				 * cookies = request.getCookies();
+				 * if (cookies != null){
+				 * for (int i = 0; i < cookies.length; i ++){
+				 * if (cookies[i].getName().equals("login_cookie")){
+				 * loginName = cookies[i].getValue();
+				 * break;
+				 * }
+				 *}
+				 */
+
 			}
 			else {
 				error = "Invalid login details! Please try again.";
