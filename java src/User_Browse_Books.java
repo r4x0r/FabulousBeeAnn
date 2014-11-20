@@ -19,8 +19,9 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 
 		Connection conn = null;
 		Statement querybooks = null;
-		String queryStr = null
-		int params = 0
+		String queryStr = null;
+		String asQueryStr = null;
+		int params = 0;
 
 		try {
 			// Step 1: Allocate a database Connection object
@@ -78,39 +79,50 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 				params ++;
 			}
 			
-
+			// Step 3: Execute a SQL SELECT query
 			if (params > 0) {
-				//search is valid as there are at least some stuff to be searching
-				//now determines if it is order by year_of_pub or avg_score
-				queryStr = queryStr + "order by year_of_pub;"
-			} else {
-				//if search is invalid, abandon it
-			}
+				// search is valid as there are at least some stuff to be searching
+				if (request.getParameter("sortby") == "year") {
+					//SORT BY YEAR
+					queryStr = queryStr + "order by year_of_pub;";
+					ResultSet searchResult = querybooks.executeQuery(queryStr);
+					while (searchResult.next()) {
+						// output the search table
+						//
+						//     ^_^
+						//
+					}
+				} else {
+					//SORT BY AVG SCORE part 1 (for those with some scores)
+					asQueryStr = "SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, avg_score ";
+					asQueryStr = asQueryStr + "FROM (" + queryStr + ") searched ";
+					asQueryStr = asQueryStr + "JOIN (SELECT book_id, AVG(score*1.0) AS avg_score FROM Feedbacks GROUP BY book_id) fscore ";
+					asQueryStr = asQueryStr + "ON ISBN = 'book_id' ORDER BY avg_score DESC;";
+					ResultSet searchResult1 = querybooks.executeQuery(asQueryStr);
+					while (searchResult1.next()) {
+						// output the search table for result part 1
+					}
 
-
-				ResultSet checkResult = checkDatabase.executeQuery(logincheckStr);
-				if (checkResult.next()) {
-					if (request.getParameter("pw").equals(checkResult.getString("password"))) {
-						exists = true;
+					//SORT BY AVG SCORE part 2 (for those without any score, output zero)
+					asQueryStr = "SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, 0 AS avg_score ";
+					asQueryStr = asQueryStr + "FROM (" + queryStr + ") searched ";
+					asQueryStr = asQueryStr + "WHERE NOT EXISTS (SELECT * FROM Feedbacks WHERE book_id = 'ISBN');";
+					ResultSet searchResult2 = querybooks.executeQuery(asQueryStr);
+					while (searchResult2.next()) {
+						// output the search table for result part 2
+						//
+						//      ^_^
+						//
 					}
 				}
-			}
 
-			// Step 3: Execute a SQL SELECT query
-
-			if (exists) {
-				// Direct successful registration to success.html
-				out.println("<html><body><script type=\"text/javascript\">");  
-				out.println("alert('Success');"); 
-				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_home.html\";");
-				out.println("</script></body></html>");
-			}
-			else {
-				error = "Invalid login details! Please try again.";
+			} else {
+				// if search is invalid, abandon it
+				error = "Invalid search terms. Please refine your search and try again.";
 				// Alerts User of error and redirects unsuccessful registration back to register.html
 				out.println("<html><body><script type=\"text/javascript\">");  
 				out.println("alert('" + error + "');"); 
-				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_login.html\";");
+				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_browse_books.html\";");
 				out.println("</script></body></html>");
 			}
 
@@ -120,7 +132,7 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 			out.close();  // Close the output writer
 			try {
 				// Step 5: Close the resources
-				if (checkDatabase != null) checkDatabase.close();
+				if (querybooks != null) querybooks.close();
 				if (conn != null) conn.close();
 			} catch (SQLException ex) {
 				ex.printStackTrace();

@@ -1,0 +1,45 @@
+checklist for website
+
+(legends
+	X: completed and functional
+	W: work in progress
+	_: not done)
+
+ADMIN
+---------------------------------
+X | admin homepage
+X | admin add new book
+X | admin update copies of books
+_ | admin view statistics
+_ |   best-selling books
+_ |   best-selling authors
+_ |   best_selling publishers
+
+
+USER
+---------------------------------
+X | user register
+X | user home
+W | user login (cookie)
+
+_ | user view records
+_ |   account info
+_ |   history of orders
+_ |   history of feedbacks
+_ |   history of liked feedbacks
+
+W | user browse books (output to html)
+W |   order by year of pub
+W |   order by avg_score
+
+_ | user writes feedback
+_ | user view others feedbacks
+_ |   view top useful feedbacks
+_ |   rate others feedback
+
+_ | user order books
+_ |   recommend to buy
+
+
+
+
