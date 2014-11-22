@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Success!</title>
+    <title>Search Result</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
@@ -20,7 +20,34 @@
     <div class="row">
       <div class="large-12 columns">
         <div class="panel">
-          <h4>You have successfully updated the following book:</h4>
+
+        <!-- Options -->
+        <h3> Options </h3>
+        <p> Copy the ISBN of the book if you want to order the book or view ratings of the book. </p>
+
+          <!-- form -->
+          <form method="get" action="http://localhost:9999/FabulousBeeAnn/user_browse_books_results">
+            <div class="row">
+              <div class="large-6 large-centered columns">
+                <label>ISBN</label>
+                <input type="text" name="title" maxlength="140" placeholder="" />
+
+                <input type="submit" value="View Ratings" class="large radius button">
+                <!-- <br/> -->
+                <!-- whitespaces -->
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <input type="submit" value="ORDER!!!" formaction="http://localhost:9999/FabulousBeeAnn/user_order" class="large radius button alert" placeholder = "" />
+
+              </div>
+            </div>
+          </form>
+
+
+          <hr />
+
+          <!-- Book Results -->
+          <h3> Browse Results </h3>
+
           <table>
             <!-- table header -->
             <thead>
@@ -30,49 +57,23 @@
                 <th width="200">Author</th>
                 <th width="200">Publisher</th>
                 <th width="150">Year of Publication</th>
-                <th width="150">Current Copies</th>
+                <th width="150">Copies Available</th>
                 <th width="150">Price</th>
                 <th width="70">Format</th>
                 <th width="200">Keywords</th>
                 <th width="200">Subject</th>
+                <th width="70">Average Score</th>
               </tr>
             </thead>
             <!-- table data -->
             <!-- this part need to print using while loop in java -->
             <tbody>
-              <tr>
-                <td>978-0439064873
-                <td>Harry Potter and the Chamber of Secrets
-                <td>J.K. Rowling
-                <td>Scholastic
-                <td>2000
-                <td>100
-                <td>6.64
-                <td>softcover
-                <td>Harry Potter
-                <td>Children
-              <tr>
             </tbody>
           </table>
 
-
-          <!-- buttons -->
-          <div class="row">
-            <div class="large-12 columns">
-              <div class='large-3 large-offset-3 columns'>
-                <a href="admin_home.html" class="large radius button">Home</a><br/>
-              </div>
-            </div>
-
-          </div>
         </div>
       </div>
     </div>
-
-
-
-
-
 
 
     <script src="js/vendor/jquery.js"></script>

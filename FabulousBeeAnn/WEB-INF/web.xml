@@ -47,7 +47,7 @@
    
    <servlet-mapping>
       <servlet-name>UserBrowseBooks</servlet-name>
-      <url-pattern>/user_browse_results</url-pattern>
+      <url-pattern>/user_browse_books_results</url-pattern>
    </servlet-mapping>
 
    <servlet-mapping>

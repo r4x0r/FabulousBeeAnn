@@ -54,7 +54,7 @@ public class User_Login extends HttpServlet {  // JDK 6 and above only
 
 				// Set the time before the cookie expires - 24 hours
 				login_cookie.setMaxAge(60*60*24);
-				login_cookie.setComment("values should not contain white space, brackets, parentheses, equals signs, commas, double quotes, slashes, question marks, at signs, colons, and semicolons")
+				login_cookie.setComment("values should not contain white space, brackets, parentheses, equals signs, commas, double quotes, slashes, question marks, at signs, colons, and semicolons");
 
 				// Put this cookie into the response header
 				response.addCookie(login_cookie);

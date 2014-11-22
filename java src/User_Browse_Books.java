@@ -21,7 +21,12 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 		Statement querybooks = null;
 		String queryStr = null;
 		String asQueryStr = null;
+		String dataString = "";
 		int params = 0;
+
+		//for file IO
+		BufferedReader reader;
+		PrintWriter writer;
 
 		try {
 			// Step 1: Allocate a database Connection object
@@ -32,7 +37,7 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 			querybooks = conn.createStatement();
 
 			// Step 2.1: set up query statement
-			queryStr = "select * from Books where "
+			queryStr = "select * from Books where ";
 			// title check
 			if (Global.checks(request.getParameter("title"), "a+p+w")) {
 				queryStr = queryStr + "title = '" + request.getParameter("title") + "' ";
@@ -78,44 +83,108 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 				queryStr = queryStr + "keywords = '" + request.getParameter("keywords") + "' ";
 				params ++;
 			}
-			
+
 			// Step 3: Execute a SQL SELECT query
 			if (params > 0) {
 				// search is valid as there are at least some stuff to be searching
-				if (request.getParameter("sortby") == "year") {
+				if (request.getParameter("sortby").equalsIgnoreCase("year")) {
 					//SORT BY YEAR
 					queryStr = queryStr + "order by year_of_pub;";
 					ResultSet searchResult = querybooks.executeQuery(queryStr);
+
+					// 7 indent for tr, 8 indent for td (each indent = 2 whitespace)
 					while (searchResult.next()) {
-						// output the search table
-						//
-						//     ^_^
-						//
+						dataString = dataString + "              <tr>";
+						dataString = dataString + "\n                <td>" + searchResult.getString("ISBN");
+						dataString = dataString + "\n                <td>" + searchResult.getString("title");
+						dataString = dataString + "\n                <td>" + searchResult.getString("authors");
+						dataString = dataString + "\n                <td>" + searchResult.getString("publisher");
+						dataString = dataString + "\n                <td>" + searchResult.getInt("year_of_pub");
+						dataString = dataString + "\n                <td>" + searchResult.getInt("copies_avail");
+						dataString = dataString + "\n                <td>" + searchResult.getFloat("price");
+						dataString = dataString + "\n                <td>" + searchResult.getString("format");
+						dataString = dataString + "\n                <td>" + searchResult.getString("keywords");
+						dataString = dataString + "\n                <td>" + searchResult.getString("subject");
+						dataString = dataString + "\n              <tr>\n";
 					}
+					System.out.println("Year:");
+					System.out.println(dataString);
+					
 				} else {
 					//SORT BY AVG SCORE part 1 (for those with some scores)
+					System.out.println("QueryStr:" + queryStr);
 					asQueryStr = "SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, avg_score ";
 					asQueryStr = asQueryStr + "FROM (" + queryStr + ") searched ";
 					asQueryStr = asQueryStr + "JOIN (SELECT book_id, AVG(score*1.0) AS avg_score FROM Feedbacks GROUP BY book_id) fscore ";
-					asQueryStr = asQueryStr + "ON ISBN = 'book_id' ORDER BY avg_score DESC;";
+					asQueryStr = asQueryStr + "ON ISBN = book_id ORDER BY avg_score DESC;";
 					ResultSet searchResult1 = querybooks.executeQuery(asQueryStr);
+					System.out.println("AsQueryStr:" + asQueryStr);
 					while (searchResult1.next()) {
 						// output the search table for result part 1
+						System.out.println("Came in");
+						dataString = dataString + "              <tr>";
+						dataString = dataString + "\n                <td>" + searchResult1.getString("ISBN");
+						dataString = dataString + "\n                <td>" + searchResult1.getString("title");
+						dataString = dataString + "\n                <td>" + searchResult1.getString("authors");
+						dataString = dataString + "\n                <td>" + searchResult1.getString("publisher");
+						dataString = dataString + "\n                <td>" + searchResult1.getInt("year_of_pub");
+						dataString = dataString + "\n                <td>" + searchResult1.getInt("copies_avail");
+						dataString = dataString + "\n                <td>" + searchResult1.getFloat("price");
+						dataString = dataString + "\n                <td>" + searchResult1.getString("format");
+						dataString = dataString + "\n                <td>" + searchResult1.getString("keywords");
+						dataString = dataString + "\n                <td>" + searchResult1.getString("subject");
+						dataString = dataString + "\n                <td>" + searchResult1.getFloat("avg_score");
+						dataString = dataString + "\n              <tr>\n";
 					}
+					System.out.println("Part 1:");
+					System.out.println(dataString);
 
 					//SORT BY AVG SCORE part 2 (for those without any score, output zero)
 					asQueryStr = "SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, 0 AS avg_score ";
 					asQueryStr = asQueryStr + "FROM (" + queryStr + ") searched ";
-					asQueryStr = asQueryStr + "WHERE NOT EXISTS (SELECT * FROM Feedbacks WHERE book_id = 'ISBN');";
+					asQueryStr = asQueryStr + "WHERE NOT EXISTS (SELECT * FROM Feedbacks WHERE book_id = ISBN);";
 					ResultSet searchResult2 = querybooks.executeQuery(asQueryStr);
 					while (searchResult2.next()) {
 						// output the search table for result part 2
-						//
-						//      ^_^
-						//
+						dataString = dataString + "              <tr>";
+						dataString = dataString + "\n                <td>" + searchResult2.getString("ISBN");
+						dataString = dataString + "\n                <td>" + searchResult2.getString("title");
+						dataString = dataString + "\n                <td>" + searchResult2.getString("authors");
+						dataString = dataString + "\n                <td>" + searchResult2.getString("publisher");
+						dataString = dataString + "\n                <td>" + searchResult2.getInt("year_of_pub");
+						dataString = dataString + "\n                <td>" + searchResult2.getInt("copies_avail");
+						dataString = dataString + "\n                <td>" + searchResult2.getFloat("price");
+						dataString = dataString + "\n                <td>" + searchResult2.getString("format");
+						dataString = dataString + "\n                <td>" + searchResult2.getString("keywords");
+						dataString = dataString + "\n                <td>" + searchResult2.getString("subject");
+						dataString = dataString + "\n                <td>" + searchResult2.getFloat("avg_score");
+						dataString = dataString + "\n              <tr>\n";
+
 					}
+					System.out.println("Part 2:");
+					System.out.println(dataString);
+				}
+				String filepathString = "/Users/tanchingyi93/Google Drive/apache-tomcat-7.0.56/webapps/FabulousBeeAnn/";
+				reader = new BufferedReader(new FileReader(filepathString + "user_browse_books_template.html"));
+				writer = new PrintWriter(filepathString + "user_browse_books_results.html");
+
+				int i;
+				String outputString = "";
+				for (i = 0; i < 70; i ++) {
+					outputString = outputString + reader.readLine() + "\n";
 				}
 
+				outputString = outputString + dataString;
+
+				String endingString;
+				while ((endingString = reader.readLine()) != null) {
+					outputString = outputString + endingString + "\n";
+				}
+				
+				writer.print(outputString);
+				writer.flush();
+				response.sendRedirect("http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_browse_books_results.html");
+				
 			} else {
 				// if search is invalid, abandon it
 				error = "Invalid search terms. Please refine your search and try again.";

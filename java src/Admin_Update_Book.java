@@ -9,6 +9,10 @@ public class Admin_Update_Book extends HttpServlet {  // JDK 6 and above only
 	String error = "";
 	boolean insert_now = false;
 	int db_copies = 0;
+	
+	//for file IO
+	BufferedReader reader;
+	PrintWriter writer;
 
 	// The doGet() runs once per HTTP GET request to this servlet.
 	@Override
@@ -60,12 +64,51 @@ public class Admin_Update_Book extends HttpServlet {  // JDK 6 and above only
 								"WHERE ISBN = '" + request.getParameter("ISBN") + "';";
 
 				stmt.executeUpdate(sqlStr);  // Send the query to the server
+				
+				String filepathString = "/Users/tanchingyi93/Google Drive/apache-tomcat-7.0.56/webapps/FabulousBeeAnn/";
+				reader = new BufferedReader(new FileReader(filepathString + "admin_update_book_template.html"));
+				writer = new PrintWriter(filepathString + "admin_update_book_success.html");
 
+				int i;
+				String outputString = "";
+				for (i = 0; i < 42; i ++) {
+					outputString = outputString + reader.readLine() + "\n";
+				}
+				
+				String sqlStr1 = "select * from Books where ISBN = '" + request.getParameter("ISBN") + "';"; 
+				
+				ResultSet searchResult = stmt.executeQuery(sqlStr1);
+				String dataString = "";
+				if (searchResult.next()) {
+					dataString = dataString + "              <tr>";
+					dataString = dataString + "\n                <td>" + searchResult.getString("ISBN");
+					dataString = dataString + "\n                <td>" + searchResult.getString("title");
+					dataString = dataString + "\n                <td>" + searchResult.getString("authors");
+					dataString = dataString + "\n                <td>" + searchResult.getString("publisher");
+					dataString = dataString + "\n                <td>" + searchResult.getInt("year_of_pub");
+					dataString = dataString + "\n                <td>" + searchResult.getInt("copies_avail");
+					dataString = dataString + "\n                <td>" + searchResult.getFloat("price");
+					dataString = dataString + "\n                <td>" + searchResult.getString("format");
+					dataString = dataString + "\n                <td>" + searchResult.getString("keywords");
+					dataString = dataString + "\n                <td>" + searchResult.getString("subject");
+					dataString = dataString + "\n              <tr>\n";
+				}
+				outputString = outputString + dataString;
+				
+				String endingString;
+				while ((endingString = reader.readLine()) != null) {
+					outputString = outputString + endingString + "\n";
+				}
+				
+				writer.print(outputString);
+				writer.flush();
+				response.sendRedirect("http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_update_book_success.html");
+				
 				// Direct successful registration to success.html
-				out.println("<html><body><script type=\"text/javascript\">");  
-				out.println("alert('Success');"); 
-				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_update_book_success.html\";");
-				out.println("</script></body></html>");
+//				out.println("<html><body><script type=\"text/javascript\">");  
+//				out.println("alert('Success');"); 
+//				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_update_book_success.html\";");
+//				out.println("</script></body></html>");
 			}
 			else {
 				out.println("<html><body><script type=\"text/javascript\">");  

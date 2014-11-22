@@ -56,7 +56,7 @@ public class Global {
 			result = Pattern.matches("[a-zA-Z0-9 ]+", input);
 			break;
 		case "a+p+w":
-			result = Pattern.matches("[a-zA-Z '\\!\\,\\:\\-\\&]+", input);
+			result = Pattern.matches("[a-zA-Z '\\!\\,\\:\\-\\&\\.]+", input);
 			break;
 		case "a+n+p+w":
 			result = Pattern.matches("[a-zA-Z0-9 #\\-]+", input);
