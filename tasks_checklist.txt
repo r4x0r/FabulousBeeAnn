@@ -10,7 +10,7 @@ ADMIN
 X | admin homepage
 X | admin add new book
 X | admin update copies of books
-_ | admin view statistics
+W | admin view statistics
 _ |   best-selling books
 _ |   best-selling authors
 _ |   best_selling publishers
@@ -37,8 +37,8 @@ _ | user view others feedbacks
 _ |   view top useful feedbacks
 _ |   rate others feedback
 
-_ | user order books
-_ |   recommend to buy
+W | user order books
+W |   recommend to buy
 
 
 
