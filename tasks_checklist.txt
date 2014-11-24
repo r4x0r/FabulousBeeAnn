@@ -28,9 +28,9 @@ _ |   history of orders
 _ |   history of feedbacks
 _ |   history of liked feedbacks
 
-W | user browse books (output to html)
-W |   order by year of pub
-W |   order by avg_score
+X | user browse books (output to html)
+X |   order by year of pub
+X |   order by avg_score
 
 _ | user writes feedback
 _ | user view others feedbacks
