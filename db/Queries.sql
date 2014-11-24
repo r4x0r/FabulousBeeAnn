@@ -171,7 +171,7 @@
 	-- query below assumes month of october
 	-- problem with this query is ISBN/book_id column will appear twice. JAVA needs to display only one of them.
 	select * from Orders;
-	SELECT *
+	SELECT book_id, title, sold_this_mth
 	FROM Books JOIN (SELECT book_id, SUM(copies) AS sold_this_mth
 					 FROM Orders
 					 WHERE date BETWEEN '2014-10-01' AND '2014-11-30'
