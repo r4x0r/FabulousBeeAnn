@@ -37,8 +37,8 @@ _ | user view others feedbacks
 _ |   view top useful feedbacks
 _ |   rate others feedback
 
-W | user order books
-W |   recommend to buy
+X | user order books
+X |   recommend to buy
 
 
 
