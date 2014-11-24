@@ -10,7 +10,7 @@ ADMIN
 X | admin homepage
 X | admin add new book
 X | admin update copies of books
-W | admin view statistics
+X | admin view statistics
 _ |   best-selling books
 _ |   best-selling authors
 _ |   best_selling publishers
