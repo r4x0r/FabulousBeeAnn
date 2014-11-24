@@ -26,17 +26,17 @@
         <p> Copy the ISBN of the book if you want to order the book or view ratings of the book. </p>
 
           <!-- form -->
-          <form method="get" action="http://localhost:9999/FabulousBeeAnn/user_browse_books_results">
+          <form>
             <div class="row">
               <div class="large-6 large-centered columns">
                 <label>ISBN</label>
-                <input type="text" name="title" maxlength="140" placeholder="" />
+                <input type="text" name="ISBN" maxlength="140" placeholder="" />
 
-                <input type="submit" value="View Ratings" class="large radius button">
+                <input type="submit" value="View Ratings" formaction="http://localhost:9999/FabulousBeeAnn/user_view_ratings" class="large radius button">
                 <!-- <br/> -->
                 <!-- whitespaces -->
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <input type="submit" value="ORDER!!!" formaction="http://localhost:9999/FabulousBeeAnn/user_order" class="large radius button alert" placeholder = "" />
+                <input type="submit" value="ORDER!!!" formaction="http://localhost:9999/FabulousBeeAnn/user_order_book" class="large radius button alert" placeholder = ""/>
 
               </div>
             </div>

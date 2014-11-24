@@ -16,10 +16,24 @@
       <servlet-class>User_Login</servlet-class>
    </servlet>
 
+
+
    <servlet>
       <servlet-name>UserBrowseBooks</servlet-name>
       <servlet-class>User_Browse_Books</servlet-class>
    </servlet>
+
+   <servlet>
+      <servlet-name>UserOrderBook</servlet-name>
+      <servlet-class>User_Order_Book</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>UserOrderBookSuccess</servlet-name>
+      <servlet-class>User_Order_Book_Success</servlet-class>
+   </servlet>
+
+
 
    <servlet>
       <servlet-name>AdminNewBook</servlet-name>
@@ -43,12 +57,25 @@
       <servlet-name>UserLogin</servlet-name>
       <url-pattern>/user_login_success</url-pattern>
    </servlet-mapping>
-
    
+
+
    <servlet-mapping>
       <servlet-name>UserBrowseBooks</servlet-name>
       <url-pattern>/user_browse_books_results</url-pattern>
    </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>UserOrderBook</servlet-name>
+      <url-pattern>/user_order_book</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>UserOrderBookSuccess</servlet-name>
+      <url-pattern>/user_order_book_success</url-pattern>
+   </servlet-mapping>
+
+
 
    <servlet-mapping>
       <servlet-name>AdminNewBook</servlet-name>

@@ -6,8 +6,7 @@ import javax.servlet.http.*;
 
 
 public class Admin_Update_Book extends HttpServlet {  // JDK 6 and above only
-	String error = "";
-	boolean insert_now = false;
+	int breakline = 42;
 	int db_copies = 0;
 	
 	//for file IO
@@ -26,6 +25,9 @@ public class Admin_Update_Book extends HttpServlet {  // JDK 6 and above only
 		Connection conn = null;
 		Statement stmt = null;
 		Statement checkDatabase = null;
+		boolean insert_now = false;
+		String error = "";
+
 		try {
 			// Step 1: Allocate a database Connection object
 			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd()); // <== Check!
@@ -71,7 +73,7 @@ public class Admin_Update_Book extends HttpServlet {  // JDK 6 and above only
 
 				int i;
 				String outputString = "";
-				for (i = 0; i < 42; i ++) {
+				for (i = 0; i < breakline; i ++) {
 					outputString = outputString + reader.readLine() + "\n";
 				}
 				
@@ -103,12 +105,6 @@ public class Admin_Update_Book extends HttpServlet {  // JDK 6 and above only
 				writer.print(outputString);
 				writer.flush();
 				response.sendRedirect("http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_update_book_success.html");
-				
-				// Direct successful registration to success.html
-//				out.println("<html><body><script type=\"text/javascript\">");  
-//				out.println("alert('Success');"); 
-//				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_update_book_success.html\";");
-//				out.println("</script></body></html>");
 			}
 			else {
 				out.println("<html><body><script type=\"text/javascript\">");  

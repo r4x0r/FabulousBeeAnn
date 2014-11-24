@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Result</title>
+    <title>Success!</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
@@ -20,34 +20,7 @@
     <div class="row">
       <div class="large-12 columns">
         <div class="panel">
-
-        <!-- Options -->
-        <h3> Options </h3>
-        <p> Copy the ISBN of the book if you want to order the book or view ratings of the book. </p>
-
-          <!-- form -->
-          <form>
-            <div class="row">
-              <div class="large-6 large-centered columns">
-                <label>ISBN</label>
-                <input type="text" name="ISBN" maxlength="140" placeholder="" />
-
-                <input type="submit" value="View Ratings" formaction="http://localhost:9999/FabulousBeeAnn/user_view_ratings" class="large radius button">
-                <!-- <br/> -->
-                <!-- whitespaces -->
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <input type="submit" value="ORDER!!!" formaction="http://localhost:9999/FabulousBeeAnn/user_order_book" class="large radius button alert" placeholder = ""/>
-
-              </div>
-            </div>
-          </form>
-
-
-          <hr />
-
-          <!-- Book Results -->
-          <h3> Browse Results </h3>
-
+          <h4>You may also like:</h4>
           <table>
             <!-- table header -->
             <thead>
@@ -62,30 +35,46 @@
                 <th width="70">Format</th>
                 <th width="200">Keywords</th>
                 <th width="200">Subject</th>
-                <th width="70">Average Score</th>
+                <th width="70">Sales</th>
               </tr>
             </thead>
             <!-- table data -->
             <!-- this part need to print using while loop in java -->
-            <tbody>
               <tr>
-                <td>978-1597775083
-                <td>The Theory of Everything
-                <td>Stephen W Hawking
-                <td>Phoenix Books
-                <td>2006
+                <td>978-1631060243
+                <td>The Complete Works of William Shakespeare
+                <td>William Shakespeare
+                <td>Race Point Publishing
+                <td>2014
                 <td>100
-                <td>21.73
+                <td>25.66
                 <td>hardcover
-                <td>Hawking
-                <td>Science
+                <td>Shakespeare
+                <td>Literature
+                <td>3
               <tr>
+            <tbody>
             </tbody>
           </table>
 
+
+          <!-- buttons -->
+          <div class="row">
+            <div class="large-12 columns">
+              <div class='large-3 large-offset-3 columns'>
+                <a href="user_home.html" class="large radius button">Home</a><br/>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
+
+
+
+
+
 
 
     <script src="js/vendor/jquery.js"></script>

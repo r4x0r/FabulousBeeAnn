@@ -6,8 +6,7 @@ import javax.servlet.http.*;
 
 
 public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
-	String error = "";
-	boolean exists = false;
+	int breakline = 70;
 
 	// The doGet() runs once per HTTP GET request to this servlet.
 	@Override
@@ -23,6 +22,8 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 		String asQueryStr = null;
 		String dataString = "";
 		int params = 0;
+		String error = "";
+		boolean exists = false;
 
 		//for file IO
 		BufferedReader reader;
@@ -107,21 +108,16 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 						dataString = dataString + "\n                <td>" + searchResult.getString("subject");
 						dataString = dataString + "\n              <tr>\n";
 					}
-					System.out.println("Year:");
-					System.out.println(dataString);
 					
 				} else {
 					//SORT BY AVG SCORE part 1 (for those with some scores)
-					System.out.println("QueryStr:" + queryStr);
 					asQueryStr = "SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, avg_score ";
 					asQueryStr = asQueryStr + "FROM (" + queryStr + ") searched ";
 					asQueryStr = asQueryStr + "JOIN (SELECT book_id, AVG(score*1.0) AS avg_score FROM Feedbacks GROUP BY book_id) fscore ";
 					asQueryStr = asQueryStr + "ON ISBN = book_id ORDER BY avg_score DESC;";
 					ResultSet searchResult1 = querybooks.executeQuery(asQueryStr);
-					System.out.println("AsQueryStr:" + asQueryStr);
 					while (searchResult1.next()) {
 						// output the search table for result part 1
-						System.out.println("Came in");
 						dataString = dataString + "              <tr>";
 						dataString = dataString + "\n                <td>" + searchResult1.getString("ISBN");
 						dataString = dataString + "\n                <td>" + searchResult1.getString("title");
@@ -136,8 +132,6 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 						dataString = dataString + "\n                <td>" + searchResult1.getFloat("avg_score");
 						dataString = dataString + "\n              <tr>\n";
 					}
-					System.out.println("Part 1:");
-					System.out.println(dataString);
 
 					//SORT BY AVG SCORE part 2 (for those without any score, output zero)
 					asQueryStr = "SELECT ISBN, title, authors, publisher, year_of_pub, copies_avail, price, format, keywords, subject, 0 AS avg_score ";
@@ -161,8 +155,7 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 						dataString = dataString + "\n              <tr>\n";
 
 					}
-					System.out.println("Part 2:");
-					System.out.println(dataString);
+
 				}
 				String filepathString = "/Users/tanchingyi93/Google Drive/apache-tomcat-7.0.56/webapps/FabulousBeeAnn/";
 				reader = new BufferedReader(new FileReader(filepathString + "user_browse_books_template.html"));
@@ -170,7 +163,7 @@ public class User_Browse_Books extends HttpServlet {  // JDK 6 and above only
 
 				int i;
 				String outputString = "";
-				for (i = 0; i < 70; i ++) {
+				for (i = 0; i < breakline; i ++) {
 					outputString = outputString + reader.readLine() + "\n";
 				}
 
