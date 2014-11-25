@@ -21,12 +21,13 @@ USER
 X | user register
 X | user home
 W | user login (cookie)
+W | user logout (cookie)
 
 W | user view records
-W |   account info
-W |   history of orders
-W |   history of feedbacks
-W |   history of liked feedbacks
+W |   account info (cookie)
+W |   history of orders (cookie)
+W |   history of feedbacks (cookie)
+W |   history of liked feedbacks (cookie)
 
 X | user browse books (output to html)
 X |   order by year of pub
