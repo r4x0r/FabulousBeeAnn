@@ -21,7 +21,6 @@ public class User_Logout extends HttpServlet {  // JDK 6 and above only
 			Cookie [] cookies = null; 
 			cookies = request.getCookies();
 			if (cookies != null){
-				System.out.println("Came in here");
 				for (int i = 0; i < cookies.length; i ++){
 					if (cookies[i].getName().equals("login")){
 						cookies[i].setMaxAge(0);
@@ -32,30 +31,15 @@ public class User_Logout extends HttpServlet {  // JDK 6 and above only
 				}
 			}
 			if (successful) {
-				// Direct successful registration to success.html
 				out.println("<html><body><script type=\"text/javascript\">");  
 				out.println("alert('You have successfully logged out. We hope to see you again!');"); 
 				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/\";");
 				out.println("</script></body></html>");
-
 			}
-			else {
-				error = "Logout failed! Please try again.";
-				// Alerts User of error and redirects unsuccessful registration back to register.html
-				out.println("<html><body><script type=\"text/javascript\">");  
-				out.println("alert('" + error + "');"); 
-				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_account.html\";");
-				out.println("</script></body></html>");
-			}
-
+			response.sendRedirect("http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/");
 		} catch (Exception ex) {
+			response.sendRedirect("http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/");
 			ex.printStackTrace();
-			error = "Logout failed! Please try again.";
-			// Alerts User of error and redirects unsuccessful registration back to register.html
-			out.println("<html><body><script type=\"text/javascript\">");  
-			out.println("alert('" + error + "');"); 
-			out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_account.html\";");
-			out.println("</script></body></html>");
 		} finally {
 			out.close();  // Close the output writer
 		}
