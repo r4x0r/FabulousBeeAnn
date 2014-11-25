@@ -11,7 +11,7 @@ X | admin homepage
 X | admin add new book
 X | admin update copies of books
 X | admin view statistics
-_ |   best-selling books
+W |   best-selling books
 _ |   best-selling authors
 _ |   best_selling publishers
 
@@ -22,17 +22,17 @@ X | user register
 X | user home
 W | user login (cookie)
 
-_ | user view records
-_ |   account info
-_ |   history of orders
-_ |   history of feedbacks
-_ |   history of liked feedbacks
+W | user view records
+W |   account info
+W |   history of orders
+W |   history of feedbacks
+W |   history of liked feedbacks
 
 X | user browse books (output to html)
 X |   order by year of pub
 X |   order by avg_score
 
-_ | user writes feedback
+W | user writes feedback
 _ | user view others feedbacks
 _ |   view top useful feedbacks
 _ |   rate others feedback

@@ -17,6 +17,27 @@
    </servlet>
 
 
+   <servlet>
+      <servlet-name>MyProfile</servlet-name>
+      <servlet-class>My_Profile</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>MyOrders</servlet-name>
+      <servlet-class>My_Orders</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>MyFeedbacks</servlet-name>
+      <servlet-class>My_Feedbacks</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>MyRatings</servlet-name>
+      <servlet-class>My_Ratings</servlet-class>
+   </servlet>
+
+
 
    <servlet>
       <servlet-name>UserBrowseBooks</servlet-name>
@@ -31,6 +52,13 @@
    <servlet>
       <servlet-name>UserOrderBookSuccess</servlet-name>
       <servlet-class>User_Order_Book_Success</servlet-class>
+   </servlet>
+
+
+
+   <servlet>
+      <servlet-name>UserFeedback</servlet-name>
+      <servlet-class>User_Feedback</servlet-class>
    </servlet>
 
 
@@ -57,7 +85,27 @@
       <servlet-name>UserLogin</servlet-name>
       <url-pattern>/user_login_success</url-pattern>
    </servlet-mapping>
+
+
+   <servlet-mapping>
+      <servlet-name>MyProfile</servlet-name>
+      <url-pattern>/my_profile</url-pattern>
+   </servlet-mapping>
    
+   <servlet-mapping>
+      <servlet-name>MyOrders</servlet-name>
+      <url-pattern>/my_orders</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>MyFeedbacks</servlet-name>
+      <url-pattern>/my_feedbacks</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>MyRatings</servlet-name>
+      <url-pattern>/my_ratings</url-pattern>
+   </servlet-mapping>
 
 
    <servlet-mapping>
@@ -73,6 +121,13 @@
    <servlet-mapping>
       <servlet-name>UserOrderBookSuccess</servlet-name>
       <url-pattern>/user_order_book_success</url-pattern>
+   </servlet-mapping>
+
+
+
+   <servlet-mapping>
+      <servlet-name>UserFeedback</servlet-name>
+      <url-pattern>/user_feedback</url-pattern>
    </servlet-mapping>
 
 
