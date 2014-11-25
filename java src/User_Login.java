@@ -7,7 +7,6 @@ import javax.servlet.http.*;
 
 public class User_Login extends HttpServlet {  // JDK 6 and above only
 	String error = "";
-	boolean exists = false;
 
 	// The doGet() runs once per HTTP GET request to this servlet.
 	@Override
@@ -20,6 +19,8 @@ public class User_Login extends HttpServlet {  // JDK 6 and above only
 
 		Connection conn = null;
 		Statement checkDatabase = null;
+		boolean exists = false;
+		
 		try {
 			// Step 1: Allocate a database Connection object
 			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd()); // <== Check!
