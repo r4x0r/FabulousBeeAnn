@@ -11,23 +11,23 @@ X | admin homepage
 X | admin add new book
 X | admin update copies of books
 X | admin view statistics
-W |   best-selling books
-_ |   best-selling authors
-_ |   best_selling publishers
+X |   best-selling books
+X |   best-selling authors
+X |   best_selling publishers
 
 
 USER
 ---------------------------------
 X | user register
 X | user home
-W | user login (cookie)
-W | user logout (cookie)
+X | user login (cookie)
+X | user logout (cookie)
 
-W | user view records
-W |   account info (cookie)
-W |   history of orders (cookie)
-W |   history of feedbacks (cookie)
-W |   history of liked feedbacks (cookie)
+X | user view records
+X |   account info (cookie)
+X |   history of orders (cookie)
+X |   history of feedbacks (cookie)
+X |   history of liked feedbacks (cookie)
 
 X | user browse books (output to html)
 X |   order by year of pub
@@ -38,8 +38,8 @@ _ | user view others feedbacks
 _ |   view top useful feedbacks
 _ |   rate others feedback
 
-W | user order books (cookie)
-W |   recommend to buy (cookie)
+X | user order books (cookie)
+X |   recommend to buy (cookie)
 
 
 
