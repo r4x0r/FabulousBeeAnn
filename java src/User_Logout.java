@@ -17,6 +17,17 @@ public class User_Logout extends HttpServlet {  // JDK 6 and above only
 		PrintWriter out = response.getWriter();
 
 		boolean successful = false;
+		Cookie cookie = null
+		Cookie [] cookies = null; 
+		cookies = request.getCookies();
+		if (cookies != null){
+			for (int i = 0; i < cookies.length; i ++){
+				if (cookies[i].getName().equals("login_cookie")){
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookie[i]);
+				successful = true;
+				break;
+				}
 		try {
 
 			/////////////////////////////////// Remove Cookie from Browser //////////////////////////////////////////
