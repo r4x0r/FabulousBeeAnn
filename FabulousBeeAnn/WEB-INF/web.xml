@@ -16,6 +16,11 @@
       <servlet-class>User_Login</servlet-class>
    </servlet>
 
+   <servlet>
+      <servlet-name>UserLogout</servlet-name>
+      <servlet-class>User_Logout</servlet-class>
+   </servlet>
+
 
    <servlet>
       <servlet-name>MyProfile</servlet-name>
@@ -72,6 +77,11 @@
       <servlet-name>AdminUpdateBook</servlet-name>
       <servlet-class>Admin_Update_Book</servlet-class>
    </servlet>
+
+   <servlet>
+      <servlet-name>AdminStatistics</servlet-name>
+      <servlet-class>Admin_Statistics</servlet-class>
+   </servlet>
  
    <!-- Note: All <servlet> elements MUST be grouped together and
          placed IN FRONT of the <servlet-mapping> elements -->
@@ -84,6 +94,11 @@
    <servlet-mapping>
       <servlet-name>UserLogin</servlet-name>
       <url-pattern>/user_login_success</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>UserLogout</servlet-name>
+      <url-pattern>/user_logout</url-pattern>
    </servlet-mapping>
 
 
@@ -140,5 +155,10 @@
    <servlet-mapping>
       <servlet-name>AdminUpdateBook</servlet-name>
       <url-pattern>/admin_update_book_success</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>AdminStatistics</servlet-name>
+      <url-pattern>/admin_statistics</url-pattern>
    </servlet-mapping>
 </web-app>

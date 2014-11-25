@@ -24,14 +24,12 @@ public class User_Order_Book extends HttpServlet {  // JDK 6 and above only
 		String error = "";
 		boolean exists = false;
 
-
 		String loginName = "";
-		Cookie cookie = null;
 		Cookie [] cookies = null;
 		cookies = request.getCookies();
 		if (cookies != null){
 			for (int i = 0; i < cookies.length; i++){
-				if(cookies[i].getName.equals("login")){
+				if(cookies[i].getName().equals("login")){
 					loginName = cookies[i].getValue();
 				}
 
@@ -51,8 +49,13 @@ public class User_Order_Book extends HttpServlet {  // JDK 6 and above only
 
 			// Step 2.1: set up query statement
 			queryStr = "select * from Books where ISBN = ";
-			// isbn check
-			if (Global.checks(request.getParameter("ISBN"), "n")) {
+			if (loginName.isEmpty()) {
+				error = "You are not authorized to view this page. Please proceed to login.";
+			}
+			else if (!Global.checks(request.getParameter("ISBN"), "n")) {
+				error = "Invalid ISBN input. Please refine your input and try again.";
+			}
+			else {
 				queryStr = queryStr + "'" + request.getParameter("ISBN") + "';";
 
 				// Step 3: Execute a SQL SELECT query
@@ -104,12 +107,10 @@ public class User_Order_Book extends HttpServlet {  // JDK 6 and above only
 
 				writer.print(outputString);
 				writer.flush();
+				exists = false;
 				response.sendRedirect("http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_order_book.html");
 
 			} else {
-				// if search is invalid, abandon it
-				error = "Invalid ISBN input. Please refine your input and try again.";
-				// Alerts User of error and redirects unsuccessful registration back to register.html
 				response.setIntHeader("Refresh", 5);
 				out.println("<html><body><script type=\"text/javascript\">");  
 				out.println("alert('" + error + "');"); 

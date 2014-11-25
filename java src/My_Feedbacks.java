@@ -27,19 +27,6 @@ public class My_Feedbacks extends HttpServlet {  // JDK 6 and above only
 		String error = "";
 		String dataString = "";
 
-		String loginName = "";
-		Cookie cookie = null;
-		Cookie [] cookies = null;
-		cookies = request.getCookies();
-		if (cookies != null){
-			for (int i = 0; i < cookies.length; i++){
-				if(cookies[i].getName.equals("login")){
-					loginName = cookies[i].getValue();
-				}
-
-			}
-		}			
-
 		try {
 			// Step 1: Allocate a database Connection object
 			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd()); // <== Check!
@@ -49,7 +36,18 @@ public class My_Feedbacks extends HttpServlet {  // JDK 6 and above only
 			checkDatabase = conn.createStatement();
 
 			// Perform checks on Cookie for user login
-			if (false) { 
+			String loginName = "";
+			Cookie [] cookies = null;
+			cookies = request.getCookies();
+			if (cookies != null){
+				for (int i = 0; i < cookies.length; i++){
+					if(cookies[i].getName().equals("login")){
+						loginName = cookies[i].getValue();
+					}
+				}
+			}
+
+			if (loginName.isEmpty()) { 
 				error = "You do not have the permission to view this page. Please proceed to login.";
 			}
 			else {
@@ -57,10 +55,10 @@ public class My_Feedbacks extends HttpServlet {  // JDK 6 and above only
 
 				String queryStr = "SELECT book_id, score, comment, date, (useful + (very_useful*2.0)) AS total_ratings, (useless + useful +very_useful) AS num_ppl_rated " +
 									"FROM Feedbacks " +
-									"WHERE user_id = '" + loginName + "';"; // Change the user login from here <------
+									"WHERE user_id = '" + loginName + "'";
 
 				ResultSet checkResult = checkDatabase.executeQuery(queryStr);
-				if (checkResult.next()) {
+				while (checkResult.next()) {
 					dataString = dataString + "              <tr>";
 					dataString = dataString + "\n                <td>" + checkResult.getString("book_id");
 					dataString = dataString + "\n                <td>" + checkResult.getInt("score");

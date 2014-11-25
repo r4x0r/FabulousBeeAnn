@@ -15,23 +15,21 @@ public class User_Logout extends HttpServlet {  // JDK 6 and above only
 		response.setContentType("text/html");
 		// Get a output writer to write the response message into the network socket
 		PrintWriter out = response.getWriter();
-
 		boolean successful = false;
-		Cookie cookie = null
-		Cookie [] cookies = null; 
-		cookies = request.getCookies();
-		if (cookies != null){
-			for (int i = 0; i < cookies.length; i ++){
-				if (cookies[i].getName().equals("login_cookie")){
-				cookies[i].setMaxAge(0);
-				response.addCookie(cookie[i]);
-				successful = true;
-				break;
-				}
+		
 		try {
-
-			/////////////////////////////////// Remove Cookie from Browser //////////////////////////////////////////
-			
+			Cookie [] cookies = null; 
+			cookies = request.getCookies();
+			if (cookies != null){
+				for (int i = 0; i < cookies.length; i ++){
+					if (cookies[i].getName().equals("login_cookie")){
+						cookies[i].setMaxAge(0);
+						response.addCookie(cookies[i]);
+						successful = true;
+						break;
+					}
+				}
+			}
 
 			if (successful) {
 				// Direct successful registration to success.html
@@ -57,3 +55,4 @@ public class User_Logout extends HttpServlet {  // JDK 6 and above only
 		}
 	}
 }
+		
