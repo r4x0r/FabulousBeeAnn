@@ -27,6 +27,19 @@ public class My_Ratings extends HttpServlet {  // JDK 6 and above only
 		String error = "";
 		String dataString = "";
 
+		String loginName = "";
+		Cookie cookie = null;
+		Cookie [] cookies = null;
+		cookies = request.getCookies();
+		if (cookies != null){
+			for (int i = 0; i < cookies.length; i++){
+				if(cookies[i].getName.equals("login")){
+					loginName = cookies[i].getValue();
+				}
+
+			}
+		}			
+
 		try {
 			// Step 1: Allocate a database Connection object
 			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd()); // <== Check!
@@ -45,7 +58,7 @@ public class My_Ratings extends HttpServlet {  // JDK 6 and above only
 				String queryStr = "SELECT f.book_id, f.user_id, f.score, f.comment, f.date, (f.useful + (f.very_useful*2.0)) AS total_ratings, (f.useless + f.useful + f.very_useful) AS num_ppl_rated, l.rating " +
 									"FROM Feedbacks f, (SELECT book_id, commenter_id, rating " +
 														"FROM Likes " +
-														"WHERE liker_id = 'job') l " + // Change the user login from here <------
+														"WHERE liker_id = '" + loginName + "') l " + // Change the user login from here <------
 									"WHERE f.book_id = l.book_id " +
 									"AND f.user_id = l.commenter_id;"; 
 

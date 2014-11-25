@@ -27,6 +27,21 @@ public class My_Profile extends HttpServlet {  // JDK 6 and above only
 		String error = "";
 		String dataString = "";
 
+
+		String loginName = "";
+		Cookie cookie = null;
+		Cookie [] cookies = null;
+		cookies = request.getCookies();
+		if (cookies != null){
+			for (int i = 0; i < cookies.length; i++){
+				if(cookies[i].getName.equals("login")){
+					loginName = cookies[i].getValue();
+				}
+
+			}
+		}
+
+
 		try {
 			// Step 1: Allocate a database Connection object
 			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd()); // <== Check!
@@ -44,7 +59,7 @@ public class My_Profile extends HttpServlet {  // JDK 6 and above only
 
 				String queryStr = "SELECT name, credit_card_no, address, phone " +
 									"FROM Customers " +
-									"WHERE login = 'job';"; // Change the user login from here <------
+									"WHERE login = '" + loginName + "';"; // Change the user login from here <------
 
 				ResultSet checkResult = checkDatabase.executeQuery(queryStr);
 				if (checkResult.next()) {

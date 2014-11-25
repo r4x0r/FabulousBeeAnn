@@ -29,6 +29,19 @@ public class User_Order_Book_Success extends HttpServlet {  // JDK 6 and above o
 		BufferedReader reader;
 		PrintWriter writer;
 
+		String loginName = "";
+		Cookie cookie = null;
+		Cookie [] cookies = null;
+		cookies = request.getCookies();
+		if (cookies != null){
+			for (int i = 0; i < cookies.length; i++){
+				if(cookies[i].getName.equals("login")){
+					loginName = cookies[i].getValue();
+				}
+
+			}
+		}	
+
 		try {
 			// Step 1: Allocate a database Connection object
 			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd()); // <== Check!

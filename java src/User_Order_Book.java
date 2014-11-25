@@ -24,6 +24,20 @@ public class User_Order_Book extends HttpServlet {  // JDK 6 and above only
 		String error = "";
 		boolean exists = false;
 
+
+		String loginName = "";
+		Cookie cookie = null;
+		Cookie [] cookies = null;
+		cookies = request.getCookies();
+		if (cookies != null){
+			for (int i = 0; i < cookies.length; i++){
+				if(cookies[i].getName.equals("login")){
+					loginName = cookies[i].getValue();
+				}
+
+			}
+		}	
+
 		//for file IO
 		BufferedReader reader;
 		PrintWriter writer;

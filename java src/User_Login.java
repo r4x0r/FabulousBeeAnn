@@ -67,7 +67,7 @@ public class User_Login extends HttpServlet {  // JDK 6 and above only
 				 * cookies = request.getCookies();
 				 * if (cookies != null){
 				 * for (int i = 0; i < cookies.length; i ++){
-				 * if (cookies[i].getName().equals("login_cookie")){
+				 * if (cookies[i].getName().equals("login")){
 				 * loginName = cookies[i].getValue();
 				 * break;
 				 * }
