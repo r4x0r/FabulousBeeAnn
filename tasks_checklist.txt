@@ -38,7 +38,7 @@ _ |   view top useful feedbacks
 _ |   rate others feedback
 
 W | user order books (cookie)
-X |   recommend to buy (cookie)
+W |   recommend to buy (cookie)
 
 
 
