@@ -23,6 +23,7 @@ public class User_Order_Book extends HttpServlet {  // JDK 6 and above only
 		String dataString = "";
 		String error = "";
 		boolean exists = false;
+		boolean skip = false;
 
 		String loginName = "";
 		Cookie [] cookies = null;
@@ -51,6 +52,12 @@ public class User_Order_Book extends HttpServlet {  // JDK 6 and above only
 			queryStr = "select * from Books where ISBN = ";
 			if (loginName.isEmpty()) {
 				error = "You are not authorized to view this page. Please proceed to login.";
+
+				out.println("<html><body><script type=\"text/javascript\">");  
+				out.println("alert('" + error + "');"); 
+				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_login.html\";");
+				out.println("</script></body></html>");
+				skip = true;
 			}
 			else if (!Global.checks(request.getParameter("ISBN"), "n")) {
 				error = "Invalid ISBN input. Please refine your input and try again.";
@@ -110,7 +117,7 @@ public class User_Order_Book extends HttpServlet {  // JDK 6 and above only
 				exists = false;
 				response.sendRedirect("http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/user_order_book.html");
 
-			} else {
+			} else if (!skip) {
 				response.setIntHeader("Refresh", 5);
 				out.println("<html><body><script type=\"text/javascript\">");  
 				out.println("alert('" + error + "');"); 
