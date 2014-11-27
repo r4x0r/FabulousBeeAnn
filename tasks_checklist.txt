@@ -33,10 +33,10 @@ X | user browse books (output to html)
 X |   order by year of pub
 X |   order by avg_score
 
-W | user writes feedback
-_ | user view others feedbacks
-_ |   view top useful feedbacks
-_ |   rate others feedback
+X | user writes feedback
+X | user view others feedbacks
+X |   view top useful feedbacks
+X |   rate others feedback
 
 X | user order books (cookie)
 X |   recommend to buy (cookie)

@@ -75,21 +75,22 @@
 	FROM Books
 	WHERE ISBN = y;
 	
-	INSERT INTO Feedbacks VALUES (book_id, user_id, score, comment, date, useless, useful very_useful);
+	INSERT INTO Feedbacks VALUES (book_id, user_id, score, comment, date, useless, useful, very_useful);
 
 
 
 -- 7. user can rate other ppl's feedback
-	-- user cannot rate their own feedback
-	SELECT book_id, user_id, score, comment, date, (useful + (very_useful*2.0)) AS total_ratings, (useless + useful + very_useful) AS num_ppl_rated
-	FROM Feedbacks;
 
-	-- JAVA to check if user is rating his own comment
 	-- JAVA to select the appropriate update query
 	UPDATE Feedbacks SET useless = useless + 1 WHERE book_id = x AND user_id = y;
 	UPDATE Feedbacks SET useful = useful + 1 WHERE book_id = x AND user_id = y;
 	UPDATE Feedbacks SET very_useful = very_useful + 1 WHERE book_id = x AND user_id = y;
+	-- rating = 0-2
+	INSERT INTO Likes VALUES (book_id, commenter_id, liker_id, rating);
 
+	-- java must implement
+    -- user cannot rate his own feedback
+	-- user cannot rate a feedback twice
 
 
 -- 8. users search for books by querying on 
@@ -141,6 +142,12 @@
 		  AND (useless + useful + very_useful) > 0) book_comments
 	ORDER BY avg_usefulness DESC;
 
+	-- the leftover feedbacks
+	SELECT user_id, score, comment, date, 0 AS avg_usefulness, 0 AS num_of_voters
+	FROM (SELECT * FROM Feedbacks
+	      WHERE book_id = '978-1597775083'
+		  AND (useless + useful + very_useful) = 0) book_comments;
+
 
 
 -- 10. this is assrape difficult to query.
@@ -171,7 +178,7 @@
 	-- query below assumes month of october
 	-- problem with this query is ISBN/book_id column will appear twice. JAVA needs to display only one of them.
 	select * from Orders;
-	SELECT ISBN, title, sold_this_mth
+	SELECT *
 	FROM Books JOIN (SELECT book_id, SUM(copies) AS sold_this_mth
 					 FROM Orders
 					 WHERE date BETWEEN '2014-10-01' AND '2014-11-30'

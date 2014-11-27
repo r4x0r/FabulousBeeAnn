@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browse Feedbacks</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+
+  <body>
+    <!-- title -->
+    <div class="row">
+      <div class="large-12 columns">
+        <h1>Welcome to Fabulous BB & NN</h1>
+      </div>
+    </div>
+
+    <!-- grey panel -->
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="panel">
+
+        <!-- Options -->
+        <h3> Rate a Feedback </h3>
+        <p> Copy the id of the feedback and give a rating! </p>
+
+          <!-- form -->
+          <form method="get" action="http://localhost:9999/FabulousBeeAnn/user_rate_feedback">
+            <div class="row">
+              <div class="large-6 large-centered columns">
+                <label>Feedback ID</label>
+                <input type="text" name="feedback_id" maxlength="140" placeholder="" />
+
+                <label>Rating</label>
+                <input type="radio" name="rating" value="useless" id="useless"><label for="useless">Useless</label>
+                <input type="radio" name="rating" value="useful" ><label for="useful">Useful</label>
+                <input type="radio" name="rating" value="very_useful" ><label for="very_useful">Very Useful</label>
+
+                <input type="submit" value="Submit" class="large radius button">
+              </div>
+            </div>
+          </form>
+
+
+          <hr />
+
+          <!-- Book Results -->
+          <h3> Browse Feedbacks </h3>
+
+          <table>
+            <!-- table header -->
+            <thead>
+              <tr>
+                <th width="100">Feedback ID</th>
+                <th width="70">Score</th>
+                <th width="400">Comments</th>
+                <th width="100">Date</th>
+                <th width="70">Average Rating</th>
+                <th width="120">Number of Users Rated</th>
+              </tr>
+            </thead>
+            <!-- table data -->
+            <!-- this part need to print using while loop in java -->
+            <tbody>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Result</title>
+    <title>Feedbacks</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
@@ -20,33 +20,27 @@
     <div class="row">
       <div class="large-12 columns">
         <div class="panel">
-
-        <!-- Options -->
-        <h3> Options </h3>
-        <p> Copy the ISBN of the book if you want to order the book or view feedbacks of the book. </p>
+        <h3>Give a feedback, view top feedbacks from other users, or view all feedbacks</h3>
 
           <!-- form -->
-          <form>
+          <form method="get">
             <div class="row">
               <div class="large-6 large-centered columns">
-                <label>ISBN</label>
-                <input type="text" name="ISBN" maxlength="140" placeholder="" />
 
-                <input type="submit" value="Feedbacks" formaction="http://localhost:9999/FabulousBeeAnn/user_feedback" class="large radius button">
-                <!-- <br/> -->
-                <!-- whitespaces -->
-                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                <input type="submit" value="ORDER!!!" formaction="http://localhost:9999/FabulousBeeAnn/user_order_book" class="large radius button alert" placeholder = ""/>
-
+                <input type="submit" value="Write Feedback" formaction="http://localhost:9999/FabulousBeeAnn/user_write_feedback" class="large radius button"><br/>
+                <br/>
+                View top <input type="number" name="top_num"> feedbacks (based on average rating by users)
+                <input type="submit" name="view" value="View" formaction="http://localhost:9999/FabulousBeeAnn/user_view_feedbacks" class="large radius button"><br/>
+                <br/>
+                <input type="submit" name="view" value="View All Feedbacks" formaction="http://localhost:9999/FabulousBeeAnn/user_view_feedbacks" class="large radius button">
               </div>
             </div>
           </form>
 
 
           <hr />
-
           <!-- Book Results -->
-          <h3> Browse Results </h3>
+          <h3>Feedbacks for the Following Book</h3>
 
           <table>
             <!-- table header -->
@@ -62,27 +56,13 @@
                 <th width="70">Format</th>
                 <th width="200">Keywords</th>
                 <th width="200">Subject</th>
-                <th width="70">Average Score</th>
               </tr>
             </thead>
             <!-- table data -->
             <!-- this part need to print using while loop in java -->
             <tbody>
-              <tr>
-                <td>978-1597775083
-                <td>The Theory of Everything
-                <td>Stephen W Hawking
-                <td>Phoenix Books
-                <td>2006
-                <td>99
-                <td>21.73
-                <td>hardcover
-                <td>Hawking
-                <td>Science
-              <tr>
             </tbody>
           </table>
-
         </div>
       </div>
     </div>

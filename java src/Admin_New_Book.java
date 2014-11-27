@@ -8,7 +8,6 @@ import javax.servlet.http.*;
 public class Admin_New_Book extends HttpServlet {  // JDK 6 and above only
 	String error = "";
 	
-
 	// The doGet() runs once per HTTP GET request to this servlet.
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -19,18 +18,16 @@ public class Admin_New_Book extends HttpServlet {  // JDK 6 and above only
 		PrintWriter out = response.getWriter();
 
 		Connection conn = null;
-		Statement stmt = null;
-		Statement checkDatabase = null;
+		Statement queryDatabase = null;
 		boolean insert_now = false;
 		
 		try {
-			// Step 1: Allocate a database Connection object
-			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd()); // <== Check!
-			// database-URL(hostname, port, default database), username, password
+			// Allocate a database Connection object
+			// Import global variables (url, db_username, db_pw) from the Global Class
+			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd());
 
-			// Step 2: Allocate a Statement object within the Connection
-			stmt = conn.createStatement();
-			checkDatabase = conn.createStatement();
+			// Allocate a Statement object within the Connection
+			queryDatabase = conn.createStatement();
 
 			// Perform checks on all user inputs
 			if (!Global.checks(request.getParameter("title"), "a+p+w")) {
@@ -67,7 +64,7 @@ public class Admin_New_Book extends HttpServlet {  // JDK 6 and above only
 				// Check whether ISBN exists within Database
 				boolean exists = true;
 				String bookcheckStr = "select ISBN from Books where ISBN = '" + request.getParameter("ISBN") + "';"; 
-				ResultSet checkResult = checkDatabase.executeQuery(bookcheckStr);
+				ResultSet checkResult = queryDatabase.executeQuery(bookcheckStr);
 				if (!checkResult.next()) {
 					insert_now = true;
 				}
@@ -76,8 +73,7 @@ public class Admin_New_Book extends HttpServlet {  // JDK 6 and above only
 			}
 
 			if (insert_now) {
-				// Step 3: Execute a SQL SELECT query
-
+				// Perform insertion into Books table
 				String sqlStr = "INSERT INTO Books " +
 						"VALUES ('" + request.getParameter("ISBN") + "'," +
 						"'" + request.getParameter("title") + "'," +
@@ -90,15 +86,16 @@ public class Admin_New_Book extends HttpServlet {  // JDK 6 and above only
 						"'" + request.getParameter("keywords") + "'," +
 						"'" + request.getParameter("subject") + "');";
 
-				stmt.executeUpdate(sqlStr);  // Send the query to the server
+				queryDatabase.executeUpdate(sqlStr);  // Send the query to the server
 
-				// Direct successful registration to success.html
+				// Direct successful registration to admin_new_book_success.html
 				out.println("<html><body><script type=\"text/javascript\">");  
 				out.println("alert('Success');"); 
 				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_new_book_success.html\";");
 				out.println("</script></body></html>");
 			}
 			else {
+				// Direct unsuccessful registration back to admin_new_book.html
 				out.println("<html><body><script type=\"text/javascript\">");  
 				out.println("alert('" + error + "');"); 
 				out.println("location = \"http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_new_book.html\";");
@@ -110,9 +107,8 @@ public class Admin_New_Book extends HttpServlet {  // JDK 6 and above only
 		} finally {
 			out.close();  // Close the output writer
 			try {
-				// Step 5: Close the resources
-				if (checkDatabase != null) checkDatabase.close();
-				if (stmt != null) stmt.close();
+				// Close the resources
+				if (queryDatabase != null) queryDatabase.close();
 				if (conn != null) conn.close();
 			} catch (SQLException ex) {
 				ex.printStackTrace();

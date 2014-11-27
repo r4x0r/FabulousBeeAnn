@@ -73,7 +73,7 @@ public class User_Order_Book_Success extends HttpServlet {  // JDK 6 and above o
 
 					// insert into book order into Orders table
 					iqueryStr = "INSERT INTO Orders VALUES ('" + 
-							"job" + "', '" + 
+							loginName + "', '" + 
 							request.getParameter("ISBN") + "', " +
 							order_num + ", " +
 							num_copies + ", '" +
@@ -118,7 +118,7 @@ public class User_Order_Book_Success extends HttpServlet {  // JDK 6 and above o
 							"AND user_id IN (SELECT user_id " +
 							"FROM Orders " +
 							"WHERE book_id = '" + request.getParameter("ISBN") + "' " +
-							"AND user_id <> 'job') " +
+							"AND user_id <> '" + loginName + "') " +
 							"GROUP BY book_id) recommend " +
 							"ON ISBN = book_id " +
 							"ORDER BY sales DESC;";

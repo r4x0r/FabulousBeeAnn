@@ -22,6 +22,7 @@
    </servlet>
 
 
+
    <servlet>
       <servlet-name>MyProfile</servlet-name>
       <servlet-class>My_Profile</servlet-class>
@@ -41,6 +42,7 @@
       <servlet-name>MyRatings</servlet-name>
       <servlet-class>My_Ratings</servlet-class>
    </servlet>
+
 
 
 
@@ -64,6 +66,26 @@
    <servlet>
       <servlet-name>UserFeedback</servlet-name>
       <servlet-class>User_Feedback</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>UserWriteFeedback</servlet-name>
+      <servlet-class>User_Write_Feedback</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>UserWriteFeedbackSuccess</servlet-name>
+      <servlet-class>User_Write_Feedback_Success</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>UserViewFeedbacks</servlet-name>
+      <servlet-class>User_View_Feedbacks</servlet-class>
+   </servlet>
+
+   <servlet>
+      <servlet-name>UserRateFeedback</servlet-name>
+      <servlet-class>User_Rate_Feedback</servlet-class>
    </servlet>
 
 
@@ -102,6 +124,7 @@
    </servlet-mapping>
 
 
+
    <servlet-mapping>
       <servlet-name>MyProfile</servlet-name>
       <url-pattern>/my_profile</url-pattern>
@@ -121,6 +144,7 @@
       <servlet-name>MyRatings</servlet-name>
       <url-pattern>/my_ratings</url-pattern>
    </servlet-mapping>
+
 
 
    <servlet-mapping>
@@ -143,6 +167,26 @@
    <servlet-mapping>
       <servlet-name>UserFeedback</servlet-name>
       <url-pattern>/user_feedback</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>UserWriteFeedback</servlet-name>
+      <url-pattern>/user_write_feedback</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>UserWriteFeedbackSuccess</servlet-name>
+      <url-pattern>/user_write_feedback_success</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>UserViewFeedbacks</servlet-name>
+      <url-pattern>/user_view_feedbacks</url-pattern>
+   </servlet-mapping>
+
+   <servlet-mapping>
+      <servlet-name>UserRateFeedback</servlet-name>
+      <url-pattern>/user_rate_feedback</url-pattern>
    </servlet-mapping>
 
 

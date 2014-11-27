@@ -29,11 +29,11 @@ public class Admin_Update_Book extends HttpServlet {  // JDK 6 and above only
 		String error = "";
 
 		try {
-			// Step 1: Allocate a database Connection object
+			// Allocate a database Connection object
+			// Import global variables (url, db_username, db_pw) from the Global Class
 			conn = DriverManager.getConnection(Global.getMySQLconn(), Global.getSQLuser(), Global.getSQLpwd()); // <== Check!
-			// database-URL(hostname, port, default database), username, password
 
-			// Step 2: Allocate a Statement object within the Connection
+			// Allocate a Statement object within the Connection
 			stmt = conn.createStatement();
 			checkDatabase = conn.createStatement();
 
@@ -59,8 +59,7 @@ public class Admin_Update_Book extends HttpServlet {  // JDK 6 and above only
 			}
 
 			if (insert_now) {
-				// Step 3: Execute a SQL SELECT query
-
+				// Perform update on Books table
 				String sqlStr = "UPDATE Books " +
 								"SET copies_avail = copies_avail + " + Integer.parseInt(request.getParameter("copies")) + " " +
 								"WHERE ISBN = '" + request.getParameter("ISBN") + "';";

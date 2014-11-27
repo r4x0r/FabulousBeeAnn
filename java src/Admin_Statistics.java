@@ -83,6 +83,7 @@ public class Admin_Statistics extends HttpServlet {  // JDK 6 and above only
 			}
 
 			if (allow_query) {
+				Thread.sleep(1000);
 				// radio button check			
 				if (request.getParameter("option").equalsIgnoreCase("best_books")) {
 					// Best-Selling Books
@@ -194,6 +195,7 @@ public class Admin_Statistics extends HttpServlet {  // JDK 6 and above only
 
 				writer.print(outputString);
 				writer.flush();
+				allow_query = false;
 				response.sendRedirect("http://" + Global.getIPadd() + ":9999/FabulousBeeAnn" + "/admin_statistics_results.html");
 			}
 
@@ -204,7 +206,7 @@ public class Admin_Statistics extends HttpServlet {  // JDK 6 and above only
 				out.println("</script></body></html>");
 			}
 
-		} catch (SQLException ex) {
+		} catch (SQLException | InterruptedException ex) {
 			ex.printStackTrace();
 		} finally {
 			out.close();  // Close the output writer
