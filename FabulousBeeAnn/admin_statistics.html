@@ -24,18 +24,21 @@
           <!-- form -->
           <form>
             <div class="row">
-              <div class="panel">
-				        <h4> You want to view the top  </h4>
-				          <div class="large-1 large-left column">
-					         <input type="text" name="m_number" maxlength="3" placeholder="" />
-					        </div>
-				            <h4> results for </h4>
+              <div class="large-12 columns">
+				        <h4> You want to view the top
+				          <input type="text" name="m_number" maxlength="3" placeholder="" class= "specialform" />
+				          results for </h4>
+                <div class="large-8 large-centered columns">
 
-				          <input type="radio" name="option" value="best_books" id="best_books" checked><label for="best_books">Best-Selling Books</label>
+  			          <input type="radio" name="option" value="best_books" id="best_books" checked><label for="best_books">Best-Selling Books</label>
                   <input type="radio" name="option" value="best_authors" id="best_authors"><label for="best_authors">Best-Selling Authors</label>
-				          <input type="radio" name="option" value="best_publishers" id="best_publishers"><label for="best_publishers">Best-Selling Publishers</label>
+  			          <input type="radio" name="option" value="best_publishers" id="best_publishers"><label for="best_publishers">Best-Selling Publishers</label>
+                </div>
+                <hr>
+                <div class="large-2 large-centered columns">
+                  <input type="submit" value="Submit" class="large radius button" formaction="http://localhost:9999/FabulousBeeAnn/admin_statistics"><br/>
+                </div>
 				      </div>
-				      <input type="submit" value="Submit" class="large radius button" formaction="http://localhost:9999/FabulousBeeAnn/admin_statistics"><br/>
             </div>
           </form>
         </div>

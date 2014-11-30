@@ -6196,3 +6196,9 @@ th.hide-for-touch {
 {
   display: none;
 }
+
+.specialform
+{
+  width: 80px !important;
+  display: inline-block !important;
+}

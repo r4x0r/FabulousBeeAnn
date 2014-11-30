@@ -20,19 +20,25 @@
     <div class="row">
       <div class="large-12 columns">
         <div class="panel">
-        <h3>Give a feedback, view top feedbacks from other users, or view all feedbacks</h3>
+        <h3>Do one of the following:</h3>
+        <hr>
 
           <!-- form -->
           <form method="get">
             <div class="row">
-              <div class="large-6 large-centered columns">
+              <div class="large-8 large-centered columns">
 
-                <input type="submit" value="Write Feedback" formaction="http://localhost:9999/FabulousBeeAnn/user_write_feedback" class="large radius button"><br/>
+              <p> Give a feedback </p>
+
+                <input type="submit" value="Write Feedback" formaction="http://localhost:9999/FabulousBeeAnn/user_write_feedback" class="large radius button">
+                <hr/>
                 <br/>
-                View top <input type="number" name="top_num"> feedbacks (based on average rating by users)
-                <input type="submit" name="view" value="View" formaction="http://localhost:9999/FabulousBeeAnn/user_view_feedbacks" class="large radius button"><br/>
-                <br/>
+                View top <input type="number" name="top_num" class="specialform"> feedbacks (based on average rating by users)
+                <br>
+                <input type="submit" name="view" value="View" formaction="http://localhost:9999/FabulousBeeAnn/user_view_feedbacks" class="large radius button">
+                &nbsp; OR &nbsp;
                 <input type="submit" name="view" value="View All Feedbacks" formaction="http://localhost:9999/FabulousBeeAnn/user_view_feedbacks" class="large radius button">
+                <input type="hidden" name="ISBN" value="978-1597775083">
               </div>
             </div>
           </form>
