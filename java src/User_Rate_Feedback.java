@@ -6,7 +6,6 @@ import javax.servlet.http.*;
 
 
 public class User_Rate_Feedback extends HttpServlet {  // JDK 6 and above only
-	int breakline = 42;
 
 	// The doGet() runs once per HTTP GET request to this servlet.
 	@Override

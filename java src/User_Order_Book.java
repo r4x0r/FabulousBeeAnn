@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 
 public class User_Order_Book extends HttpServlet {  // JDK 6 and above only
 	int breakline = 33;
-	int offset = 29; 
+	int offset = 28; 
 
 	// The doGet() runs once per HTTP GET request to this servlet.
 	@Override
